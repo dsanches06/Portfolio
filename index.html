@@ -64,13 +64,12 @@
       <!-- Secção Sobre -->
       <section id="sobre" class="about">
         <div class="about__content">
-          <figure>
-            <img
-              class="about__photo"
-              src="assets/images/avatar.webp"
-              alt="Foto de Perfil"
-            />
-          </figure>
+          <img
+            class="about__photo"
+            src="assets/images/avatar.webp"
+            alt="Foto de Perfil"
+          />
+
           <div class="about__description">
             <h2>Sobre mim</h2>
             <p>
@@ -85,17 +84,56 @@
       </section>
 
       <!-- Secção Educação -->
-      <section id="educacao">
-        <h2>Formação</h2>
-        <ul>
-          <li>Java</li>
-          <li>Cobol</li>
-          <li>C#.NET</li>
-          <li>Spring Boot</li>
-          <li>Git/Github</li>
-          <li>Common Lisp</li>
-          <li>Frontend Javascript</li>
-        </ul>
+      <section id="educacao" class="education">
+        <div class="education__content">
+          <h2>Formação</h2>
+          <div class="col">
+            <div class="row">
+              <h4>Frontend Javascript + IA</h4>
+              <span>Nov 2025 - Atualmente</span>
+              <div class="education__icons">
+                <i class="fa-solid fa-building-columns"></i>
+                <span>Faculdade de Ciências da Universidade de Lisboa </span>
+              </div>
+              <div class="education__icons">
+                <i class="fa-duotone fa-solid fa-graduation-cap"></i>
+                <span
+                  >Curso Intensivo
+                  <br />
+                  Programa UPskill - Digital Skills & Jobs
+                </span>
+              </div>
+            </div>
+            <div class="row">
+              <h4>Programação COBOL - Fundamentos</h4>
+              <span>Abril 2022 - Jun 2022 </span>
+              <div class="education__icons">
+                <i class="fa-solid fa-building-columns"></i>
+                <span>Online - Diurno</span>
+              </div>
+              <div class="education__icons">
+                <i class="fa-duotone fa-solid fa-graduation-cap"></i>
+                <span
+                  >Curso Intensivo
+                  <br />
+                  DUAL - Qualificação Profissional
+                </span>
+              </div>
+            </div>
+            <div class="row">
+              <h4>Frequência Universitária</h4>
+              <span>Out 2011 - Jul 2015</span>
+              <div class="education__icons">
+                <i class="fa-solid fa-building-columns"></i>
+                <span>Instituto Politécnico de Setúbal </span>
+              </div>
+              <div class="education__icons">
+                <i class="fa-duotone fa-solid fa-graduation-cap"></i>
+                <span>Licenciatura Engenharia Informática de Gestão</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <!-- Secção Meus Projetos-->
@@ -104,13 +142,11 @@
         <h2>Projetos</h2>
         <div class="projects__container">
           <div class="projects__card">
-            <figure>
-              <img
-                class="card__cover"
-                src="assets/images/projetos/netflix.webp"
-                alt="Interface da Netflix"
-              />
-            </figure>
+            <img
+              class="card__cover"
+              src="assets/images/projetos/netflix.webp"
+              alt="Interface da Netflix"
+            />
 
             <div class="card__body">
               <h3 class="card__title">Clone da Netflix</h3>
@@ -128,31 +164,28 @@
               </ul>
               <ul class="technologies__list">
                 <li class="technologies__item">
-                  <figure>
-                    <img
-                      class="technologies__logo"
-                      src="assets/images/technologies/html.webp"
-                      alt="Logo Html"
-                    />
-                  </figure>
+                  <div class="technologies__logo">
+                    <i
+                      class="fa-brands fa-html5 fa-2xl"
+                      style="color: #1010df"
+                    ></i>
+                  </div>
                 </li>
                 <li class="technologies__item">
-                  <figure>
-                    <img
-                      class="technologies__logo"
-                      src="assets/images/technologies/css.webp"
-                      alt="Logo CSS"
-                    />
-                  </figure>
+                  <div class="technologies__logo">
+                    <i
+                      class="fa-brands fa-css3-alt fa-2xl"
+                      style="color: #ff4500"
+                    ></i>
+                  </div>
                 </li>
                 <li class="technologies__item">
-                  <figure>
-                    <img
-                      class="technologies__logo"
-                      src="assets/images/technologies/js.webp"
-                      alt="Logo Javascript"
-                    />
-                  </figure>
+                  <div class="technologies__logo">
+                    <i
+                      class="fa-brands fa-square-js fa-2xl"
+                      style="color: #036103"
+                    ></i>
+                  </div>
                 </li>
               </ul>
               <div class="card__buttons">
@@ -168,13 +201,12 @@
             </div>
           </div>
           <div class="projects__card card--reverse">
-            <figure>
-              <img
-                class="card__cover"
-                src="assets/images/projetos/instagram.webp"
-                alt="Interface de Instagram"
-              />
-            </figure>
+            <img
+              class="card__cover"
+              src="assets/images/projetos/instagram.webp"
+              alt="Interface de Instagram"
+            />
+
             <div class="card__body">
               <h3 class="card__title">Interface inicial de instragram</h3>
               <p class="card__description">Desafios do projeto</p>
@@ -187,22 +219,20 @@
               </ul>
               <ul class="technologies__list">
                 <li class="technologies__item">
-                  <figure>
-                    <img
-                      class="technologies__logo"
-                      src="assets/images/technologies/html.webp"
-                      alt="Logo Html"
-                    />
-                  </figure>
+                  <div class="technologies__logo">
+                    <i
+                      class="fa-brands fa-html5 fa-2xl"
+                      style="color: #1010df"
+                    ></i>
+                  </div>
                 </li>
                 <li class="technologies__item">
-                  <figure>
-                    <img
-                      class="technologies__logo"
-                      src="assets/images/technologies/css.webp"
-                      alt="Logo CSS"
-                    />
-                  </figure>
+                  <div class="technologies__logo">
+                    <i
+                      class="fa-brands fa-css3-alt fa-2xl"
+                      style="color: #ff4500"
+                    ></i>
+                  </div>
                 </li>
               </ul>
               <div class="card__buttons">
@@ -218,13 +248,11 @@
             </div>
           </div>
           <div class="projects__card">
-            <figure>
-              <img
-                class="card__cover"
-                src="assets/images/projetos/parque-biologico.webp"
-                alt="Capa Games Store"
-              />
-            </figure>
+            <img
+              class="card__cover"
+              src="assets/images/projetos/parque-biologico.webp"
+              alt="Capa Games Store"
+            />
 
             <div class="card__body">
               <h3 class="card__title">Parque Biologico</h3>
@@ -241,22 +269,12 @@
               </ul>
               <ul class="technologies__list">
                 <li class="technologies__item">
-                  <figure>
-                    <img
-                      class="technologies__logo"
-                      src="assets/images/technologies/java.webp"
-                      alt="Logo Java"
-                    />
-                  </figure>
-                </li>
-                <li class="technologies__item">
-                  <figure>
-                    <img
-                      class="technologies__logo"
-                      src="assets/images/technologies/javafx.webp"
-                      alt="Logo JavaFX"
-                    />
-                  </figure>
+                  <div class="technologies__logo">
+                    <i
+                      class="fa-brands fa-java fa-2xl"
+                      style="color: #1010df"
+                    ></i>
+                  </div>
                 </li>
               </ul>
               <div class="card__buttons">

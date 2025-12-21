@@ -56,6 +56,15 @@
   z-index: 99;
 }
 
+#sidebar-active:checked ~ a:active{
+    height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 98;
+}
+
 /* ecrã maximo até 767 */
 @media (max-width: 767px) {
   .top-arrow.back-to-top {
