@@ -43,26 +43,3 @@ nav ul.aberto {
   display: flex;
 }
 
-main,
-.about,
-.education,
-.projects,
-.contact {
-  padding: 2.5rem 1rem;
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-footer {
-  margin-bottom: 5rem;
-}
-
-footer p {
-  font-size: 0.875rem;
-  text-align: center;
-  padding: 1rem;
-}

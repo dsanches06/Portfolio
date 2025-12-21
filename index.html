@@ -50,15 +50,204 @@
       </ul>
     </nav>
     <main>
-      <section id="#about">
-        <h2>Sobre Mim</h2>
+        <!-- Secção Sobre -->
+      <section id="sobre" class="about">
+        <div class="about__content">
+          <img
+            class="about__photo"
+            src="assets/images/avatar.webp"
+            alt="Foto de Perfil"
+          />
+          <div class="about__description">
+            <h2>Sobre mim</h2>
+            <p>
+              Danilson Sanches. Apaixonado por artes e tecnologia, meu primeiro
+              "Hello World" foi no IPS de Setúbal quando tive contato com HTML,
+              CSS e um pouco de JavaScript e Notepad++. Atualmente estou a
+              frequentar a formação Frontend Javascript na Universidade de
+              Lisboa através do Programa de Requalificação da Upskill.
+            </p>
+          </div>
+        </div>
       </section>
-      <section>
+
+
+      <!-- Secção Educação -->
+      <section id="educacao">
         <h2>Formação</h2>
+        <ul>
+          <li>Java</li>
+          <li>Cobol</li>
+          <li>C#.NET</li>
+          <li>Spring Boot</li>
+          <li>Git/Github</li>
+          <li>Common Lisp</li>
+          <li>Frontend Javascript</li>
+        </ul>
       </section>
-      <section>
+
+      <!-- Secção Meus Projetos-->
+
+      <section id="projetos" class="projects">
         <h2>Projetos</h2>
+        <div class="projects__container">
+          <div class="projects__card">
+            <img
+              class="card__cover"
+              src="assets/images/projetos/netflix.webp"
+              alt="Interface da Netflix"
+            />
+            <div class="card__body">
+              <h3 class="card__title">Clone da Netflix</h3>
+              <p class="card__description">Desafio do projeto</p>
+              <ul class="card__list">
+                <li class="card__item">estruturar um layout</li>
+                <li class="card__item">
+                  uso de técnicas de CSS3 com containers e variáveis
+                </li>
+                <li class="card__item">utilização plugins Jquery</li>
+                <li class="card__item">
+                  uso de media queries para site responsivo
+                </li>
+                <li class="card__item">posicionar os elementos com Flexbox</li>
+              </ul>
+              <ul class="technologies__list">
+                <li class="technologies__item">
+                  <img
+                    class="technologies__logo"
+                    src="assets/images/technologies/html.webp"
+                    alt="Logo Html"
+                  />
+                </li>
+                <li class="technologies__item">
+                  <img
+                    class="technologies__logo"
+                    src="assets/images/technologies/css.webp"
+                    alt="Logo CSS"
+                  />
+                </li>
+                <li class="technologies__item">
+                  <img
+                    class="technologies__logo"
+                    src="assets/images/technologies/js.webp"
+                    alt="Logo Javascript"
+                  />
+                </li>
+              </ul>
+              <div class="card__buttons">
+                <button class="btn btn--primary">
+                  <a
+                    href="https://github.com/dsanches06/Criar-Interface-Netflix-Digital-Innovation"
+                    target="_blank"
+                  >
+                    <span>Repositório</span></a
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="projects__card card--reverse">
+            <img
+              class="card__cover"
+              src="assets/images/projetos/instagram.webp"
+              alt="Interface de Instagram"
+            />
+            <div class="card__body">
+              <h3 class="card__title">Interface inicial de instragram</h3>
+              <p class="card__description">Desafios do projeto</p>
+              <ul class="card__list">
+                <li class="card__item">
+                  Postagens relacionadas e em destaque;
+                </li>
+                <li class="card__item">Filtragem por tags e categorias;</li>
+                <li class="card__item">Biografia do autor.</li>
+              </ul>
+              <ul class="technologies__list">
+                <li class="technologies__item">
+                  <img
+                    class="technologies__logo"
+                    src="assets/images/technologies/html.webp"
+                    alt="Logo Html"
+                  />
+                </li>
+                <li class="technologies__item">
+                  <img
+                    class="technologies__logo"
+                    src="assets/images/technologies/css.webp"
+                    alt="Logo CSS"
+                  />
+                </li>
+              </ul>
+              <div class="card__buttons">
+                <button class="btn btn--primary">
+                  <a
+                    href="https://github.com/dsanches06/Criar-Interface-Netflix-Digital-Innovation"
+                    target="_blank"
+                  >
+                    <span>Repositório</span></a
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="projects__card">
+            <img
+              class="card__cover"
+              src="assets/images/projetos/parque-biologico.webp"
+              alt="Capa Games Store"
+            />
+            <div class="card__body">
+              <h3 class="card__title">Parque Biologico</h3>
+              <p class="card__description">Descrição</p>
+              <ul class="card__list">
+                <li class="card__item">
+                  Calcular percursos a pé e de bicicleta dentro de um parque
+                  biológico;
+                </li>
+                <li class="card__item">
+                  O utilizador deverá poder calcular o seu percurso de forma a
+                  minimizar a distancia, ou o custo do mesmo
+                </li>
+              </ul>
+              <ul class="technologies__list">
+                <li class="technologies__item">
+                  <img
+                    class="technologies__logo"
+                    src="assets/images/technologies/java.webp"
+                    alt="Logo Java"
+                  />
+                </li>
+                <li class="technologies__item">
+                  <img
+                    class="technologies__logo"
+                    src="assets/images/technologies/javafx.webp"
+                    alt="Logo JavaFX"
+                  />
+                </li>
+              </ul>
+              <div class="card__buttons">
+                <button class="btn btn--primary">
+                  <a
+                    href="https://github.com/dsanches06/ParqueBiologico"
+                    target="_blank"
+                  >
+                    <span>Repositório</span></a
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+          <a
+            href="https://github.com/dsanches06?tab=repositories"
+            target="_blank"
+          >
+            <button class="btn btn--primary">
+              <span>Ver Todos os Projetos</span>
+            </button>
+          </a>
+        </div>
       </section>
+      
       <section>
         <h2>Contatos</h2>
       </section>
