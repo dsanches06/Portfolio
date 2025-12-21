@@ -1,0 +1,68 @@
+/** header **/
+.header {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background-color: var(--secondary-bg-color);
+}
+
+.header h1 {
+  font-size: 2em;
+  color: var(--text-color);
+}
+
+/* Estilo Base (Mobile) */
+.menu-toggle {
+  display: block; /* Botão visível */
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: inherit; /* Herda a cor do header */
+  padding-top: 5px;
+}
+
+nav ul {
+  display: none; /* Menu escondido por defeito */
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  background-color: var(--nav-bg-color); /* Ajusta à tua cor */
+  position: absolute; /* Para sobrepor conteúdo */
+  /* top: 60px;  Ajusta conforme altura do teu header */
+  left: 0;
+  padding: 20px;
+  z-index: 100;
+}
+
+/* Esta classe será adicionada pelo JS para mostrar o menu */
+nav ul.aberto {
+  display: flex;
+}
+
+main,
+.about,
+.education,
+.projects,
+.contact {
+  padding: 2.5rem 1rem;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+footer {
+  margin-bottom: 5rem;
+}
+
+footer p {
+  font-size: 0.875rem;
+  text-align: center;
+  padding: 1rem;
+}

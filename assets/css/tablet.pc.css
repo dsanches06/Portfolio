@@ -1,0 +1,17 @@
+
+
+/* Quando o ecrã for grande (Tablet/PC), queremos o comportamento normal */
+@media (min-width: 768px) {
+    .menu-toggle {
+        display: none; /* Esconde o botão */
+    }
+
+    nav ul {
+        display: flex; /* Mostra sempre o menu */
+        flex-direction: row; /* Em linha */
+        background-color: transparent;
+        position: static; /* Volta ao fluxo normal */
+        width: auto;
+        padding: 0;
+    }
+}
