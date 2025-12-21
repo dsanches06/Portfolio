@@ -11,6 +11,7 @@
   --link-color: #e03131;
   --icon-color: #333;
   --nav-bg-color: #12c9c9;
+  --nav-hover-color: #46eeeeb3;
 }
 
 * {
@@ -27,20 +28,31 @@ body {
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   color: var(--text-color);
   min-height: 100vh;
+  line-height: 1.6;
 }
 
-/*::-webkit-scrollbar {
-  width: 0.5rem;
+/** header **/
+.header {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background-color: var(--secondary-bg-color);
 }
 
-::-webkit-scrollbar-track {
-  background-color: transparent;
+.header h1 {
+  font-size: 2em;
+  color: var(--text-color);
 }
 
-::-webkit-scrollbar-thumb {
-  background: var(--secondary-bg-color);
-  border-radius: 50rem;
-}*/
+/** Nav link:hover **/
+nav ul li a:hover {
+  background-color: var(--nav-hover-color);
+  border-radius: 3px;
+}
+
 
 ul {
   list-style: none;
@@ -49,6 +61,7 @@ ul {
 a {
   text-decoration: none;
   color: var(--text-color);
+  cursor: pointer;
 }
 
 a:hover {
@@ -65,6 +78,7 @@ b {
 
 h1 {
   font-size: 2.5rem;
+  font-weight: 200;
 }
 
 h2 {
@@ -102,7 +116,6 @@ li {
 
 p {
   text-align: justify;
-  color: var(--title-color);
 }
 
 .btn {
@@ -155,9 +168,9 @@ p {
 }
 
 .menu__text {
-  font-size: 0.75rem;
+  font-size: 1.05rem;
   text-transform: uppercase;
-  color: var(--text-color);
+  color: var(--icon-color);
 }
 
 /********  **********/
@@ -166,7 +179,7 @@ main,
 .education,
 .projects,
 .contact {
-  padding: 2.5rem 1rem;
+  padding: 1rem;
 }
 
 main {
@@ -208,6 +221,10 @@ main {
   flex-direction: column;
   justify-content: flex-start;
   gap: 1.5rem;
+}
+
+.about__description p {
+  color: var(--title-color);
 }
 
 /** Meus Projetos **/
@@ -319,15 +336,98 @@ main {
   height: 2.4rem;
 }
 
+/* Back to Top Button **/
+.top-arrow {
+  display: block;
+  right: 30px;
+  bottom: 70px;
+  background-color: var(--nav-bg-color);
+  border-radius: 20px;
+  padding: 10px;
+  width: 50px;
+}
+
+.back-to-top {
+  animation-name: appear;
+  animation-timeline: scroll(y);
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    display: none;
+    position: fixed;
+  }
+
+  3% {
+    opacity: 0;
+    display: none;
+  }
+
+  3.5% {
+    opacity: 1;
+    display: block;
+  }
+
+  100% {
+    opacity: 1;
+    display: block;
+    position: fixed;
+  }
+}
+
+/** Fixed Nav when scrool y**/
+.nav-fixed-top {
+  animation-name: appear-nav;
+  animation-timeline: scroll(y);
+}
+
+@keyframes appear-nav {
+  0% {
+    opacity: 1;
+    display: block;
+    transition: 0.75 ease;
+
+  }
+
+  3% {
+    opacity: 1;
+    display: block;
+    top: 0;
+    position: fixed;
+    width: 100%;
+  }
+
+  3.5% {
+    opacity: 1;
+    display: block;
+    top: 0;
+    position: fixed;
+    width: 100%;
+  }
+
+  100% {
+    opacity: 1;
+    display: block;
+    top: 0;
+    position: fixed;
+    width: 100%;
+  }
+}
+
+
+
+
 /** Footer **/
 footer {
   background-color: var(--secondary-bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 footer p {
   font-size: 0.875rem;
-  text-align: center;
   padding: 1rem;
   color: var(--text-color);
-  text-align: justify;
 }

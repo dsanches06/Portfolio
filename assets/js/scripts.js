@@ -1,13 +1,13 @@
 /* script para menu responsivo */
 const btn = document.querySelector(".menu-toggle");
-const menu = document.querySelector("nav ul");
+const link_container = document.querySelector(".link");
 const main = document.querySelector("main");
 
 // Ao clicar no botão, liga/desliga a classe 'aberto'
 // e adiciona o padding do carousel
 btn.addEventListener("click", () => {
-    addClassList(menu);
-    toogleSlideMenu(menu);
+    addClassList(link_container);
+    toogleSlideMenu(link_container);
 });
 
 function addClassList(element) {
@@ -16,9 +16,9 @@ function addClassList(element) {
 
 function toogleSlideMenu(element) {
     if (element.classList.contains('aberto')) {
-        main.style.padding = "10rem 1rem";
+        main.style.padding = "12rem 1rem";
     }
     else {
-        main.style.padding = "2.5rem 1rem";
+        main.style.padding="1rem";
     }
 }

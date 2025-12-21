@@ -1,44 +1,64 @@
-/** header **/
-.header {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 0.5rem 1rem;
-  background-color: var(--secondary-bg-color);
-}
-
-.header h1 {
-  font-size: 2em;
-  color: var(--text-color);
-}
-
 /* Estilo Base (Mobile) */
-.menu-toggle {
-  display: block; /* Botão visível */
-  background: none;
-  border: none;
-  font-size: 2rem;
-  cursor: pointer;
-  color: inherit; /* Herda a cor do header */
-  padding-top: 5px;
+
+/* input checkbox para saber se o menu foi aberto ou não */
+#sidebar-active {
+  display: none;
 }
 
-nav ul {
-  display: none; /* Menu escondido por defeito */
+.link-container {
   flex-direction: column;
+  align-items: flex-start;
   gap: 0.5rem;
-  width: 100%;
+
+  position: fixed; /* Para sobrepor conteúdo */
   background-color: var(--nav-bg-color); /* Ajusta à tua cor */
-  position: absolute; /* Para sobrepor conteúdo */
-  /* top: 60px;  Ajusta conforme altura do teu header */
-  left: 0;
+  left: -100%; /* Menu sidebar escondido a esquerda */
+
   padding: 20px;
   z-index: 100;
+  width: 220px;
+
+  height: 100%;
+  box-shadow: 5px -5px 0 rgba(70, 238, 238, 0.5);
+  transition: 0.75s ease-out;
+}
+
+.link-container a {
+  box-sizing: border-box;
+  height: auto;
+  width: 100%;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: center;
 }
 
 /* Esta classe será adicionada pelo JS para mostrar o menu */
-nav ul.aberto {
+.link-container.aberto {
   display: flex;
+}
+
+.open-sidebar-button,
+.close-sidebar-button {
+  padding: 20px;
+  display: block;
+}
+
+#sidebar-active:checked ~ .link-container {
+  left: 0; /* mostrar o menu sidebar a esquerda*/
+}
+
+#sidebar-active:checked ~ #overlay {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/* ecrã maximo até 767 */
+@media (max-width: 767px) {
+  .top-arrow.back-to-top {
+    display: none; /* Esconde o icone */
+  }
 }

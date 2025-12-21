@@ -23,32 +23,42 @@
       <h1>Danilson Sanches</h1>
       <span>Futuro Web Developer</span>
     </header>
-    <nav>
-      <button class="menu-toggle" aria-label="Abrir Menu">
-        <i class="fa-solid fa-bars"></i>
-      </button>
-      <ul>
-        <li class="menu__item">
-          <a class="menu__link active" href="#sobre">
-            <span class="menu__text"> Sobre </span>
-          </a>
-        </li>
-        <li class="menu__item">
-          <a class="menu__link" href="#educacao">
-            <span class="menu__text"> Educação </span></a
-          >
-        </li>
-        <li class="menu__item">
-          <a class="menu__link" href="#projetos">
-            <span class="menu__text"> Projetos </span></a
-          >
-        </li>
-        <li class="menu__item">
-          <a class="menu__link" href="#contato">
-            <span class="menu__text"> Contactos </span></a
-          >
-        </li>
-      </ul>
+    <nav class="nav-fixed-top .nav-fixed-top-ul">
+      <input type="checkbox" class="menu-toggle" id="sidebar-active" />
+      <label for="sidebar-active" class="open-sidebar-button">
+        <i class="fa-solid fa-bars fa-lg"></i>
+      </label>
+
+      <label for="sidebar-active" id="overlay"></label>
+
+      <div class="link-container">
+        <label for="sidebar-active" class="close-sidebar-button">
+          <i class="fa-sharp fa-solid fa-xmark fa-lg"></i>
+        </label>
+
+        <ul>
+          <li class="menu__item">
+            <a class="menu__link" href="#sobre">
+              <span class="menu__text"> Sobre </span>
+            </a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link" href="#educacao">
+              <span class="menu__text"> Educação </span></a
+            >
+          </li>
+          <li class="menu__item">
+            <a class="menu__link" href="#projetos">
+              <span class="menu__text"> Projetos </span></a
+            >
+          </li>
+          <li class="menu__item">
+            <a class="menu__link" href="#contato">
+              <span class="menu__text"> Contactos </span></a
+            >
+          </li>
+        </ul>
+      </div>
     </nav>
     <main>
       <!-- Secção Sobre -->
@@ -276,6 +286,14 @@
         <h2>Contatos</h2>
       </section>
     </main>
+    <!-- back to top -->
+    <a href="#" id="back-top-arrow">
+      <img
+        class="top-arrow back-to-top"
+        src="assets/images/top_arrow.webp"
+        alt="back to top"
+      />
+    </a>
     <footer>
       <p>
         &copy; 2025 Portfólio desenvolvido por Danilson Sanches para fins

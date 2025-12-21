@@ -1,17 +1,67 @@
-
-
 /* Quando o ecrã for grande (Tablet/PC), queremos o comportamento normal */
 @media (min-width: 768px) {
-    .menu-toggle {
-        display: none; /* Esconde o botão */
-    }
+  .open-sidebar-button,
+  .close-sidebar-button {
+    display: none; /* Esconde o botão */
+  }
 
-    nav ul {
-        display: flex; /* Mostra sempre o menu */
-        flex-direction: row; /* Em linha */
-        background-color: transparent;
-        position: static; /* Volta ao fluxo normal */
-        width: auto;
-        padding: 0;
-    }
+  /** Nav **/
+  nav {
+    background-color: var(--nav-bg-color);
+  }
+
+  #sidebar-active:not(:checked) ~ .link-container {
+    width: auto;
+    position: static;
+    background: transparent;
+    transition: none;
+    box-shadow: none;
+    gap: 2rem;
+    padding: 0;
+  }
+
+  .link-container ul {
+    display: flex;
+  }
+
+  h1 {
+    font-size: 5rem;
+  }
+
+  h2 {
+    font-size: 3rem;
+  }
+
+  .projects__card {
+    flex-direction: row;
+  }
+
+  .projects__card.card--reverse {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+
+  .card__cover {
+    width: 55%;
+  }
+
+  .about {
+    gap: 5rem;
+  }
+
+  .about__content {
+    display: grid;
+    grid-template-columns: 34% 60%;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 4rem;
+  }
+
+  .about__description h2 {
+    text-align: left;
+  }
+
+  .description__buttons {
+    justify-content: flex-start;
+  }
 }
