@@ -1,0 +1,449 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@200;400&display=swap");
+
+:root {
+  --black-color: #333;
+  --white-snow-color: #f5f5f5;
+  --gray-color: #f0f0f0;
+  --blue-color: #12c9c9;
+  --blue-hover-color: #46eeeeb3;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--white-snow-color);
+  color: var(--black-color);
+  font-family: "Inter", Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--blue-hover-color);
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 400;
+}
+
+h2 {
+  font-size: 2rem;
+  text-align: center;
+  letter-spacing: 0.4rem;
+}
+
+h3 {
+  font-size: 1.55rem;
+  text-align: left;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "League Spartan", Tahoma, Geneva, Verdana, sans-serif;
+  text-transform: uppercase;
+  font-weight: 200;
+}
+
+p,
+span,
+li {
+  font-size: 1rem;
+}
+
+p {
+  text-align: justify;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+  width: 100%;
+  background: transparent;
+  border-radius: 3.125rem;
+  border: none;
+  padding: 0.875rem 1.5rem;
+  transition: ease-in-out 0.3s;
+  cursor: pointer;
+  color: var(--black-color);
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  transition: ease-in-out 0.3s;
+}
+
+.btn span,
+.btn i {
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  color: var(--black-color);
+}
+
+.btn--primary span,
+.btn--primary i {
+  color: var(--black-color);
+}
+
+.btn--primary {
+  border: 1px solid var(--black-color);
+}
+
+/* Header */
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 20px;
+  z-index: 2;
+  background-color: var(--black-color);
+}
+
+.header h1,
+span {
+  color: var(--white-snow-color);
+}
+
+nav {
+  background-color: var(--blue-color);
+}
+
+nav ul {
+  list-style: none;
+}
+
+/* Sections */
+.home,
+.about,
+.projects,
+.contact {
+  padding: 2.5rem 1rem;
+}
+
+/* home */
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.home_first_content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.home_second_content iframe {
+  width: 100%;
+  aspect-ratio: 16/9;
+}
+
+/* about */
+.about {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: var(--gray-color);
+}
+
+.about_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.about_photo {
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+  border-radius: 50rem;
+  border: 1px solid var(--gray-color);
+}
+
+.about_description {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1.5rem;
+}
+
+.about_icons {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.about_icons i {
+  font-size: 1.25rem;
+}
+
+.about_icons span {
+  color: var(--black-color);
+}
+
+.technologies_list {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 0.5rem;
+}
+
+.technologies_item {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 4.8rem;
+  height: 4.8rem;
+  aspect-ratio: 1/1;
+  border: 1px solid var(--secondary-border-color);
+  border-radius: 50rem;
+}
+
+.technologies_logo {
+  height: 2.4rem;
+}
+
+.jquery_logo {
+  width: 35px;
+  height: 35px;
+}
+
+/* Projects */
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.projects_container {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.projects_card {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.card_label {
+  font-size: 0.6rem;
+  font-weight: small;
+  text-align: center;
+}
+.card_cover {
+  width: 100%;
+  border-radius: 0.5rem;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+}
+
+.card_cover .card_label {
+  font-size: 1rem;
+}
+
+.card_body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.card_description {
+  color: var(--title-color);
+}
+
+.card_list,
+.about_list {
+  margin-left: 1.25rem;
+}
+
+.card_item,
+.about_item {
+  list-style: disc;
+  text-justify: justify;
+}
+
+.card_buttons,
+.description_buttons {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.card_buttons .btn {
+  padding: 0.65rem 1.25rem;
+  align-items: center;
+}
+
+.btn--primary .card_buttons .btn span {
+  font-size: 1rem;
+}
+
+.card_body .technologies_list {
+  gap: 0.75rem;
+}
+
+.card_body .technologies_item {
+  width: 4rem;
+  height: 4rem;
+}
+
+.card_body .technologies_logo {
+  height: 2rem;
+}
+
+.projects .btn {
+  width: auto;
+  margin: auto;
+}
+
+/* RESPONSIVIDADE */
+
+/* Tablet */
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 5rem;
+  }
+
+  h2 {
+    font-size: 3rem;
+  }
+
+  .home,
+  .about,
+  .projects {
+    padding: 8rem 6rem 4rem 6rem;
+  }
+
+  .home_first_content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (min-width: 992px) {
+  .about {
+    gap: 5rem;
+  }
+
+  .about_content {
+    display: grid;
+    grid-template-columns: 34% 60%;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 4rem;
+  }
+
+  .about_description h2 {
+    text-align: left;
+  }
+
+  .description_buttons {
+    justify-content: flex-start;
+  }
+
+  .projects_card {
+    flex-direction: row;
+  }
+
+  .projects_card.card-reverse {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+
+  .card_cover {
+    width: 55%;
+  }
+}
+
+@media (min-width: 1200px) {
+  h2 {
+    font-size: 4rem;
+  }
+
+  h3 {
+    font-size: 2.5rem;
+  }
+
+  p,
+  span,
+  li {
+    font-size: 1.15rem;
+  }
+
+  .home {
+    padding: 12rem 6rem 2rem;
+  }
+
+  .home_first_content .btn,
+  .card_buttons .btn,
+  .description_buttons .btn {
+    width: auto;
+  }
+
+  .technologies_list {
+    gap: 1rem;
+  }
+
+  .technologies_item {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  .technologies_logo {
+    height: 3rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  h1 {
+    font-size: 6.25rem;
+  }
+
+  h2 {
+    font-size: 4.5rem;
+  }
+
+  h3 {
+    font-size: 3.25rem;
+  }
+
+  .header {
+    padding: 1rem 15rem;
+  }
+
+  .home {
+    padding: 12rem 15rem 2rem;
+  }
+  .about,
+  .projects,
+  .contat {
+    padding: 10rem 15rem 4rem;
+  }
+}
