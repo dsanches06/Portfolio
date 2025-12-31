@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-PT">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,11 +27,11 @@
   </head>
 
   <body>
-    <header class="header">
+    <header class="header" role="banner">
       <h1>Danilson Sanches</h1>
       <span>Futuro Web Developer</span>
     </header>
-    <nav class="nav-fixed-top .nav-fixed-top-ul">
+    <nav class="nav-fixed-top" role="navigation" aria-label="Navegação principal">
       <input type="checkbox" class="menu-toggle" id="sidebar-active" />
       <label for="sidebar-active" class="open-sidebar-button">
         <i class="fa-solid fa-bars fa-2xl" aria-hidden="true"></i>
@@ -68,18 +68,18 @@
         </ul>
       </div>
     </nav>
-    <main>
+    <main role="main">
       <!-- Secção Sobre -->
-      <section id="sobre" class="about">
+      <section id="sobre" class="about" aria-labelledby="heading-sobre">
         <div class="about__content">
           <img
             class="about__photo"
             src="assets/images/avatar.webp"
-            alt="Foto de Perfil"
+            alt="Foto de Perfil de Danilson Sanches"
           />
 
           <div class="about__description">
-            <h2>Sobre mim</h2>
+            <h2 id="heading-sobre">Sobre mim</h2>
             <p>
               Danilson Sanches. Apaixonado por artes e tecnologia, meu primeiro
               "Hello World" foi no IPS de Setúbal quando tive contato com HTML,
@@ -92,9 +92,9 @@
       </section>
 
       <!-- Secção Educação -->
-      <section id="educacao" class="education">
+      <section id="educacao" class="education" aria-labelledby="heading-educacao">
         <div class="education__content">
-          <h2>Formação</h2>
+          <h2 id="heading-educacao">Formação</h2>
           <div class="col">
             <div class="row">
               <h3>Frontend Javascript + IA</h3>
@@ -155,8 +155,8 @@
 
       <!-- Secção Meus Projetos-->
 
-      <section id="projetos" class="projects">
-        <h2>Projetos</h2>
+      <section id="projetos" class="projects" aria-labelledby="heading-projetos">
+        <h2 id="heading-projetos">Projetos</h2>
         <div class="projects__container">
           <div class="projects__card">
             <img
@@ -203,14 +203,15 @@
                 </li>
               </ul>
               <div class="card__buttons">
-                <button class="btn btn--primary">
-                  <a
-                    href="https://github.com/dsanches06/Criar-Interface-Netflix-Digital-Innovation"
-                    target="_blank"
-                  >
-                    <span>Repositório</span></a
-                  >
-                </button>
+                <a
+                  href="https://github.com/dsanches06/Criar-Interface-Netflix-Digital-Innovation"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Acessar repositório do Clone da Netflix no GitHub"
+                  class="btn btn--primary"
+                >
+                  <span>Repositório Netflix</span>
+                </a>
               </div>
             </div>
           </div>
@@ -247,14 +248,15 @@
                 </li>
               </ul>
               <div class="card__buttons">
-                <button class="btn btn--primary">
-                  <a
-                    href="https://github.com/dsanches06/Criar-Interface-Netflix-Digital-Innovation"
-                    target="_blank"
-                  >
-                    <span>Repositório</span></a
-                  >
-                </button>
+                <a
+                  href="https://github.com/dsanches06/Criar-Interface-Instagram"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Acessar repositório da Interface do Instagram no GitHub"
+                  class="btn btn--primary"
+                >
+                  <span>Repositório Instagram</span>
+                </a>
               </div>
             </div>
           </div>
@@ -286,30 +288,30 @@
                 </li>
               </ul>
               <div class="card__buttons">
-                <button class="btn btn--primary">
-                  <a
-                    href="https://github.com/dsanches06/ParqueBiologico"
-                    target="_blank"
-                  >
-                    <span>Repositório</span></a
-                  >
-                </button>
+                <a
+                  href="https://github.com/dsanches06/ParqueBiologico"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Acessar repositório do Parque Biológico no GitHub"
+                  class="btn btn--primary"
+                >
+                  <span>Repositório Parque Bio</span>
+                </a>
               </div>
             </div>
           </div>
           <a
             href="https://github.com/dsanches06?tab=repositories"
             target="_blank"
+            class="btn btn--primary"
           >
-            <button class="btn btn--primary">
-              <span>Ver Todos os Projetos</span>
-            </button>
+            <span>Ver Todos os Projetos</span>
           </a>
         </div>
       </section>
 
-      <section id="contacto" class="contact">
-        <h2>Contatos</h2>
+      <section id="contacto" class="contact" aria-labelledby="heading-contacto">
+        <h2 id="heading-contacto">Contatos</h2>
 
         <form id="contact-form" onsubmit="enviarForm(event)">
           <label for="nome" class="menu__text">Nome</label>
@@ -358,12 +360,11 @@
       </section>
     </main>
     <!-- back to top -->
-    <a href="#" id="back-top-arrow" aria-label="Back to Top">
+    <a href="#" id="back-top-arrow" aria-label="Voltar ao topo da página">
       <img
         class="top-arrow back-to-top"
         src="assets/images/top_arrow.webp"
-        alt="back to top"
-        role="img"
+        alt="seta para voltar ao topo"
       />
     </a>
 
@@ -379,32 +380,22 @@
       </p>
     </div>
 
-    <footer>
-      <div class="redes--sociais">
-        <a
-          href="#"
-          id="linkedin"
-          role="link"
-          aria-label="O meu perfil de LinkedIn"
-        >
+    <footer role="contentinfo">
+      <div class="redes--sociais" aria-label="Links de redes sociais">
+        <a href="#" id="linkedin" aria-label="O meu perfil de LinkedIn">
           <i class="fa-brands fa-linkedin fa-2xl" aria-hidden="true"></i>
         </a>
-        <a href="#" id="github" role="link" aria-label="O meu perfil de GitHub">
+        <a href="#" id="github" aria-label="O meu perfil de GitHub">
           <i class="fa-brands fa-square-github fa-2xl" aria-hidden="true"></i>
         </a>
-        <a
-          href="#"
-          id="phone"
-          role="link"
-          aria-label="O meu contato telefonico"
-        >
+        <a href="#" id="phone" aria-label="O meu contato telefonico">
           <i
             class="fa-sharp-duotone fa-solid fa-phone fa-2xl"
             aria-hidden="true"
           ></i>
         </a>
 
-        <a href="#" id="outlook" role="link" aria-label="O meu email">
+        <a href="#" id="outlook" aria-label="O meu email">
           <i class="fa-solid fa-envelope fa-2xl" aria-hidden="true"></i>
         </a>
       </div>
