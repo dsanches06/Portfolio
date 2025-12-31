@@ -16,114 +16,367 @@
       href="assets/images/favicon.ico"
       type="image/x-icon"
     />
-    <link rel="stylesheet" href="css/style.css" />
-    <script src="js/script.js" defer></script>
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/mobile.first.css" />
+    <link rel="stylesheet" href="css/tablet.pc.css" />
     <script
       src="https://kit.fontawesome.com/874e9efdc5.js"
       crossorigin="anonymous"
-      defer
     ></script>
+    <script src="js/script.js" defer></script>
   </head>
-  <body>
-    <!-- cabeçalho -->
-    <header aria-label="Cabeçalho Principal">
-      <h1 aria-label="Titulo de cabeçalho">Danilson Sanches</h1>
-      <p aria-hidden="true">
-        <span aria-hidden="true">Futuro Web Developer</span>
-      </p>
-    </header>
-    <!-- menu de navegação -->
-    <nav aria-label="Menu de Navegação Principal">
-      <button class="menu-toggle" aria-label="Abrir Menu">
-        <i class="fa-solid fa-bars"></i>
-      </button>
 
-      <ul aria-label="Links para as seções principais da página">
-        <li>
-          <a href="#sobre">Sobre Mim</a>
-        </li>
-        <li>
-          <a href="#formacao">Educação</a>
-        </li>
-        <li>
-          <a href="#projetos">Projetos</a>
-        </li>
-        <li>
-          <a href="#contactos">Contatos</a>
-        </li>
-      </ul>
+  <body>
+    <header class="header">
+      <h1>Danilson Sanches</h1>
+      <span>Futuro Web Developer</span>
+    </header>
+    <nav class="nav-fixed-top .nav-fixed-top-ul">
+      <input type="checkbox" class="menu-toggle" id="sidebar-active" />
+      <label for="sidebar-active" class="open-sidebar-button">
+        <i class="fa-solid fa-bars fa-2xl" aria-hidden="true"></i>
+      </label>
+
+      <label for="sidebar-active" id="overlay"></label>
+
+      <div class="link-container">
+        <label for="sidebar-active" class="close-sidebar-button">
+          <i class="fa-sharp fa-solid fa-xmark fa-2xl" aria-hidden="true"></i>
+        </label>
+
+        <ul>
+          <li class="menu__item">
+            <a class="menu__link" href="#sobre">
+              <span class="menu__text"> Sobre </span>
+            </a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link" href="#educacao">
+              <span class="menu__text"> Educação </span></a
+            >
+          </li>
+          <li class="menu__item">
+            <a class="menu__link" href="#projetos">
+              <span class="menu__text"> Projetos </span></a
+            >
+          </li>
+          <li class="menu__item">
+            <a class="menu__link" href="#contacto">
+              <span class="menu__text"> Contactos </span></a
+            >
+          </li>
+        </ul>
+      </div>
     </nav>
-    <!-- conteúdo principal -->
     <main>
-      <!-- sobre mim-->
-      <section id="sobre" class="sobre--mim">
-        <h2>Sobre Mim</h2>
-        <div class="container--sobre">
-          <figure role="img" aria-label="Foto de Danilson Sanches">
-            <img
-              class="foto--perfil"
-              src="assets/images/avatar.webp"
-              alt="foto de Danilson Sanches"
-              role="img"
-              aria-label="Foto de perfil de Danilson Sanches"
-            />
-          </figure>
-          <p aria-label="Descrição Pessoal">
-            Danilson Sanches. Apaixonado por artes e tecnologia, meu primeiro
-            "Hello World" foi no IPS de Setúbal quando tive contato com HTML,
-            CSS e um pouco de JavaScript e Notepad++. Atualmente estou a
-            frequentar a formação Frontend Javascript na Universidade de Lisboa
-            através do Programa de Requalificação da Upskill.
-          </p>
+      <!-- Secção Sobre -->
+      <section id="sobre" class="about">
+        <div class="about__content">
+          <img
+            class="about__photo"
+            src="assets/images/avatar.webp"
+            alt="Foto de Perfil"
+          />
+
+          <div class="about__description">
+            <h2>Sobre mim</h2>
+            <p>
+              Danilson Sanches. Apaixonado por artes e tecnologia, meu primeiro
+              "Hello World" foi no IPS de Setúbal quando tive contato com HTML,
+              CSS e um pouco de JavaScript e Notepad++. Atualmente estou a
+              frequentar a formação Frontend Javascript na Universidade de
+              Lisboa através do Programa de Requalificação da Upskill.
+            </p>
+          </div>
         </div>
       </section>
-      <!-- formação acadêmica -->
-      <section id="formacao" class="educacao">
-        <h2>Formação</h2>
-        <ol>
-          <li>
-            <h3>Frontend Javascript + IA</h3>
-            <p>Frontend Javascript - 2025 - Presente</p>
-            <p>Faculdade de Ciências da Universidade de Lisboa</p>
-            <p>
-              Curso Intensivo
-              <br />
-              Programa UPskill - Digital Skills & Jobs
-            </p>
-          </li>
 
-          <li>
-            <h3>Programação COBOL - Fundamentos</h3>
-            <p>Abr 2022 - Jun 2022</p>
-            <p>Online - Diurno</p>
-            <p>
-              Curso Intensivo
-              <br />
-              DUAL - Qualificação Profissional
-            </p>
-          </li>
-
-          <li>
-            <h3>Frequência Universitária</h3>
-            <p>Out 2011 - Jul 2015</p>
-            <p>Instituto Politécnico de Setúbal</p>
-            <p>Licenciatura Engenharia Informática de Gestão (não concluída)</p>
-          </li>
-        </ol>
-
-
-
+      <!-- Secção Educação -->
+      <section id="educacao" class="education">
+        <div class="education__content">
+          <h2>Formação</h2>
+          <div class="col">
+            <div class="row">
+              <h4>Frontend Javascript + IA</h4>
+              <span>Nov 2025 - Atualmente</span>
+              <div class="education__icons">
+                <i class="fa-solid fa-building-columns" aria-hidden="true"></i>
+                <span>Faculdade de Ciências da Universidade de Lisboa </span>
+              </div>
+              <div class="education__icons">
+                <i
+                  class="fa-duotone fa-solid fa-graduation-cap"
+                  aria-hidden="true"
+                ></i>
+                <span
+                  >Curso Intensivo
+                  <br />
+                  Programa UPskill - Digital Skills & Jobs
+                </span>
+              </div>
+            </div>
+            <div class="row">
+              <h4>Programação COBOL - Fundamentos</h4>
+              <span>Abril 2022 - Jun 2022 </span>
+              <div class="education__icons">
+                <i class="fa-solid fa-building-columns" aria-hidden="true"></i>
+                <span>Online - Diurno</span>
+              </div>
+              <div class="education__icons">
+                <i
+                  class="fa-duotone fa-solid fa-graduation-cap"
+                  aria-hidden="true"
+                ></i>
+                <span
+                  >Curso Intensivo
+                  <br />
+                  DUAL - Qualificação Profissional
+                </span>
+              </div>
+            </div>
+            <div class="row">
+              <h4>Frequência Universitária</h4>
+              <span>Out 2011 - Jul 2015</span>
+              <div class="education__icons">
+                <i class="fa-solid fa-building-columns" aria-hidden="true"></i>
+                <span>Instituto Politécnico de Setúbal </span>
+              </div>
+              <div class="education__icons">
+                <i
+                  class="fa-duotone fa-solid fa-graduation-cap"
+                  aria-hidden="true"
+                ></i>
+                <span>Licenciatura Engenharia Informática de Gestão</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
-      <!-- projetos -->
-      <section id="projetos" class="projetos--grid">
-        <h2>Meus Projetos</h2>
+
+      <!-- Secção Meus Projetos-->
+
+      <section id="projetos" class="projects">
+        <h2>Projetos</h2>
+        <div class="projects__container">
+          <div class="projects__card">
+            <img
+              class="card__cover"
+              src="assets/projetos/netflix.webp"
+              alt="Interface da Netflix"
+            />
+
+            <div class="card__body">
+              <h3 class="card__title">Clone da Netflix</h3>
+              <p class="card__description">Desafio do projeto</p>
+              <ul class="card__list">
+                <li class="card__item">estruturar um layout</li>
+                <li class="card__item">
+                  uso de técnicas de CSS3 com containers e variáveis
+                </li>
+                <li class="card__item">utilização plugins Jquery</li>
+                <li class="card__item">
+                  uso de media queries para site responsivo
+                </li>
+                <li class="card__item">posicionar os elementos com Flexbox</li>
+              </ul>
+              <ul class="technologies__list">
+                <li class="technologies__item">
+                  <div class="technologies__logo">
+                    <i class="fa-brands fa-html5 fa-2xl" aria-hidden="true"></i>
+                  </div>
+                </li>
+                <li class="technologies__item">
+                  <div class="technologies__logo">
+                    <i
+                      class="fa-brands fa-css3-alt fa-2xl"
+                      aria-hidden="true"
+                    ></i>
+                  </div>
+                </li>
+                <li class="technologies__item">
+                  <div class="technologies__logo">
+                    <i
+                      class="fa-brands fa-square-js fa-2xl"
+                      aria-hidden="true"
+                    ></i>
+                  </div>
+                </li>
+              </ul>
+              <div class="card__buttons">
+                <button class="btn btn--primary">
+                  <a
+                    href="https://github.com/dsanches06/Criar-Interface-Netflix-Digital-Innovation"
+                    target="_blank"
+                  >
+                    <span>Repositório</span></a
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="projects__card card--reverse">
+            <img
+              class="card__cover"
+              src="assets/projetos/instagram.webp"
+              alt="Interface de Instagram"
+            />
+
+            <div class="card__body">
+              <h3 class="card__title">Interface inicial de instragram</h3>
+              <p class="card__description">Desafios do projeto</p>
+              <ul class="card__list">
+                <li class="card__item">
+                  Postagens relacionadas e em destaque;
+                </li>
+                <li class="card__item">Filtragem por tags e categorias;</li>
+                <li class="card__item">Biografia do autor.</li>
+              </ul>
+              <ul class="technologies__list">
+                <li class="technologies__item">
+                  <div class="technologies__logo">
+                    <i class="fa-brands fa-html5 fa-2xl" aria-hidden="true"></i>
+                  </div>
+                </li>
+                <li class="technologies__item">
+                  <div class="technologies__logo">
+                    <i
+                      class="fa-brands fa-css3-alt fa-2xl"
+                      aria-hidden="true"
+                    ></i>
+                  </div>
+                </li>
+              </ul>
+              <div class="card__buttons">
+                <button class="btn btn--primary">
+                  <a
+                    href="https://github.com/dsanches06/Criar-Interface-Netflix-Digital-Innovation"
+                    target="_blank"
+                  >
+                    <span>Repositório</span></a
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="projects__card">
+            <img
+              class="card__cover"
+              src="assets/projetos/parque-biologico.webp"
+              alt="Capa Games Store"
+            />
+
+            <div class="card__body">
+              <h3 class="card__title">Parque Biologico</h3>
+              <p class="card__description">Descrição</p>
+              <ul class="card__list">
+                <li class="card__item">
+                  Calcular percursos a pé e de bicicleta dentro de um parque
+                  biológico;
+                </li>
+                <li class="card__item">
+                  O utilizador deverá poder calcular o seu percurso de forma a
+                  minimizar a distancia, ou o custo do mesmo
+                </li>
+              </ul>
+              <ul class="technologies__list">
+                <li class="technologies__item">
+                  <div class="technologies__logo">
+                    <i class="fa-brands fa-java fa-2xl" aria-hidden="true"></i>
+                  </div>
+                </li>
+              </ul>
+              <div class="card__buttons">
+                <button class="btn btn--primary">
+                  <a
+                    href="https://github.com/dsanches06/ParqueBiologico"
+                    target="_blank"
+                  >
+                    <span>Repositório</span></a
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+          <a
+            href="https://github.com/dsanches06?tab=repositories"
+            target="_blank"
+          >
+            <button class="btn btn--primary">
+              <span>Ver Todos os Projetos</span>
+            </button>
+          </a>
+        </div>
       </section>
-      <!-- contatos -->
-      <section id="contactos" class="meus--social">
+
+      <section id="contacto" class="contact">
         <h2>Contatos</h2>
+
+        <form id="contact--form" onsubmit="enviarForm(event)">
+          <label for="nome" class="menu__text">Nome</label>
+          <input
+            type="text"
+            id="nome"
+            placeholder="Insira o seu nome"
+            required
+          />
+
+          <label for="email" class="menu__text">Email</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Insira o seu nome"
+            required
+          />
+
+          <label for="assunto" class="menu__text">Assunto</label>
+          <select id="assunto">
+            <option value="Recrutamento">Recrutamento</option>
+            <option value="Freelance">Freelance</option>
+            <option value="Outro">Outro</option>
+          </select>
+
+          <label for="mensagem" class="menu__text">Mensagem</label>
+          <textarea
+            id="mensagem"
+            rows="5"
+            required
+            minlength="10"
+            placeholder="Escreva aqui a sua proposta..."
+          ></textarea>
+
+          <button type="submit" class="btn btn--primary">
+            Enviar Mensagem 🚀
+          </button>
+        </form>
+
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2394.715143802779!2d-9.119933000000007!3d38.62154379999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd194a1208155853%3A0x37a18363d68981cf!2sR.%20Ant%C3%B3nio%20Aleixo%2C%20Amora!5e1!3m2!1spt-PT!2spt!4v1767206473368!5m2!1spt-PT!2spt"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
       </section>
     </main>
-    <!-- rodapé -->
+    <!-- back to top -->
+    <a href="#" id="back-top-arrow">
+      <img
+        class="top-arrow back-to-top"
+        src="assets/images/top_arrow.webp"
+        alt="back to top"
+      />
+    </a>
+
+    <div class="banner-info" role="alert">
+      <span class="icon" aria-hidden="true">
+        <i
+          class="fa-sharp-duotone fa-solid fa-circle-info fa-2xl"
+          aria-hidden="true"
+        ></i>
+      </span>
+      <p class="banner-info-p" aria-hidden="true">
+        <strong aria-hidden="true">Aviso:</strong>
+      </p>
+    </div>
+
     <footer>
       <div class="redes--sociais">
         <a
@@ -136,6 +389,21 @@
         </a>
         <a href="#" id="github" role="link" aria-label="O meu perfil de GitHub">
           <i class="fa-brands fa-square-github fa-2xl" aria-hidden="true"></i>
+        </a>
+        <a
+          href="#"
+          id="phone"
+          role="link"
+          aria-label="O meu contato telefonico"
+        >
+          <i
+            class="fa-sharp-duotone fa-solid fa-phone fa-2xl"
+            aria-hidden="true"
+          ></i>
+        </a>
+
+        <a href="#" id="outlook" role="link" aria-label="O meu email">
+          <i class="fa-solid fa-envelope fa-2xl" aria-hidden="true"></i>
         </a>
       </div>
 
