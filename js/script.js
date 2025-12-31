@@ -78,9 +78,6 @@ function enviarForm(event) {
   event.preventDefault();
 
   const nome = getElementById("nome").value;
-  const email = getElementById("email").value;
-  const assunto = getElementById("assunto").value;
-  const mensagem = getElementById("mensagem").value;
 
   //mostra o banner
   document.querySelector(".banner-info").style.display = "flex";
@@ -94,5 +91,5 @@ banner_info.addEventListener("click", () => {
   //fecha o banner
   banner_info.style.display = "none";
   //limpa o formulario
-  getElementById("contact--form").reset();
+  getElementById("contact-form").reset();
 });

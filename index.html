@@ -97,7 +97,7 @@
           <h2>Formação</h2>
           <div class="col">
             <div class="row">
-              <h4>Frontend Javascript + IA</h4>
+              <h3>Frontend Javascript + IA</h3>
               <span>Nov 2025 - Atualmente</span>
               <div class="education__icons">
                 <i class="fa-solid fa-building-columns" aria-hidden="true"></i>
@@ -116,7 +116,7 @@
               </div>
             </div>
             <div class="row">
-              <h4>Programação COBOL - Fundamentos</h4>
+              <h3>Programação COBOL - Fundamentos</h3>
               <span>Abril 2022 - Jun 2022 </span>
               <div class="education__icons">
                 <i class="fa-solid fa-building-columns" aria-hidden="true"></i>
@@ -135,7 +135,7 @@
               </div>
             </div>
             <div class="row">
-              <h4>Frequência Universitária</h4>
+              <h3>Frequência Universitária</h3>
               <span>Out 2011 - Jul 2015</span>
               <div class="education__icons">
                 <i class="fa-solid fa-building-columns" aria-hidden="true"></i>
@@ -311,7 +311,7 @@
       <section id="contacto" class="contact">
         <h2>Contatos</h2>
 
-        <form id="contact--form" onsubmit="enviarForm(event)">
+        <form id="contact-form" onsubmit="enviarForm(event)">
           <label for="nome" class="menu__text">Nome</label>
           <input
             type="text"
@@ -320,10 +320,10 @@
             required
           />
 
-          <label for="email" class="menu__text">Email</label>
+          <label for="e-mail" class="menu__text">Email</label>
           <input
             type="email"
-            id="email"
+            id="e-mail"
             placeholder="Insira o seu nome"
             required
           />
@@ -350,6 +350,7 @@
         </form>
 
         <iframe
+          title="Minha localização"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2394.715143802779!2d-9.119933000000007!3d38.62154379999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd194a1208155853%3A0x37a18363d68981cf!2sR.%20Ant%C3%B3nio%20Aleixo%2C%20Amora!5e1!3m2!1spt-PT!2spt!4v1767206473368!5m2!1spt-PT!2spt"
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
@@ -357,22 +358,23 @@
       </section>
     </main>
     <!-- back to top -->
-    <a href="#" id="back-top-arrow">
+    <a href="#" id="back-top-arrow" aria-label="Back to Top">
       <img
         class="top-arrow back-to-top"
         src="assets/images/top_arrow.webp"
         alt="back to top"
+        role="img"
       />
     </a>
 
     <div class="banner-info" role="alert">
-      <span class="icon" aria-hidden="true">
+      <span class="icon" aria-label="icone do banner">
         <i
           class="fa-sharp-duotone fa-solid fa-circle-info fa-2xl"
           aria-hidden="true"
         ></i>
       </span>
-      <p class="banner-info-p" aria-hidden="true">
+      <p class="banner-info-p" aria-label="informação de banner">
         <strong aria-hidden="true">Aviso:</strong>
       </p>
     </div>

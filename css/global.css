@@ -370,14 +370,14 @@ form {
   padding: 20px;
 }
 
-form label {
+label {
   display: block;
 }
 
-form input[type="text"],
-form input[type="email"],
-form select,
-form textarea {
+input[type="text"],
+input[type="email"],
+select,
+textarea {
   width: 100%;
   padding: 12px;
   margin: 8px 0;
@@ -386,7 +386,8 @@ form textarea {
   border-radius: 4px;
   box-sizing: border-box;
 }
-form input[type="submit"] {
+
+input[type="submit"] {
   width: 100%;
   background-color: #4caf50;
   color: var(--title-color);
@@ -397,7 +398,7 @@ form input[type="submit"] {
   cursor: pointer;
 }
 
-form input[type="submit"]:hover {
+input[type="submit"]:hover {
   background-color: #45a049;
 }
 
