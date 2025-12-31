@@ -568,7 +568,7 @@ footer .redes--sociais a:focus {
 }
 
 footer .redes--sociais a:focus-visible {
-  outline: 2px solid var(--link-color);
+  outline: 2px solid var(--icon-color);
   outline-offset: 2px;
 }
 
