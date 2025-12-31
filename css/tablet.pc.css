@@ -5,13 +5,13 @@
     display: none; /* Esconde o botão */
   }
 
- .top-arrow.back-to-top {
-  display: flex; /* Esconde o icone */
-}
+  .top-arrow.back-to-top {
+    display: flex; /* Esconde o icone */
+  }
 
   /** Nav **/
   nav {
-  background-color: var(--secondary-border-color);
+    background-color: var(--secondary-border-color);
     color: var(--primary-color);
   }
 
