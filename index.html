@@ -27,60 +27,48 @@
   </head>
 
   <body>
-    <header class="header" role="banner">
+    <header class="header" aria-label="Cabeçalho">
       <h1>Danilson Sanches</h1>
       <span>Futuro Web Developer</span>
     </header>
-    <nav
-      class="nav-fixed-top"
-      role="navigation"
-      aria-label="Navegação principal"
-    >
+    <nav class="nav-fixed-top" aria-label="Navegação principal">
       <input type="checkbox" class="menu-toggle" id="sidebar-active" />
-      <label
-        for="sidebar-active"
-        class="open-sidebar-button"
-        aria-label="Abrir menu de navegação"
-      >
+      <label for="sidebar-active" class="open-sidebar-button">
         <i class="fa-solid fa-bars fa-2xl" aria-hidden="true"></i>
       </label>
 
-      <label for="sidebar-active" id="overlay" aria-hidden="true"></label>
+      <label for="sidebar-active" id="overlay"></label>
 
       <div class="link-container">
-        <label
-          for="sidebar-active"
-          class="close-sidebar-button"
-          aria-label="Fechar menu de navegação"
-        >
+        <label for="sidebar-active" class="close-sidebar-button">
           <i class="fa-sharp fa-solid fa-xmark fa-2xl" aria-hidden="true"></i>
         </label>
 
         <ul>
           <li class="menu__item">
-            <a class="menu__link" href="#sobre" role="link">
+            <a class="menu__link" href="#sobre">
               <span class="menu__text"> Sobre </span>
             </a>
           </li>
           <li class="menu__item">
-            <a class="menu__link" href="#educacao" role="link">
+            <a class="menu__link" href="#educacao">
               <span class="menu__text"> Educação </span></a
             >
           </li>
           <li class="menu__item">
-            <a class="menu__link" href="#projetos" role="link">
+            <a class="menu__link" href="#projetos">
               <span class="menu__text"> Projetos </span></a
             >
           </li>
           <li class="menu__item">
-            <a class="menu__link" href="#contacto" role="link">
+            <a class="menu__link" href="#contacto">
               <span class="menu__text"> Contactos </span></a
             >
           </li>
         </ul>
       </div>
     </nav>
-    <main role="main">
+    <main>
       <!-- Secção Sobre -->
       <section id="sobre" class="about" aria-labelledby="heading-sobre">
         <div class="about__content">
@@ -402,7 +390,7 @@
       </p>
     </div>
 
-    <footer role="contentinfo">
+    <footer>
       <div class="redes--sociais" role="region">
         <a href="#" id="linkedin" aria-label="O meu perfil de LinkedIn">
           <i class="fa-brands fa-linkedin fa-2xl" aria-hidden="true"></i>
