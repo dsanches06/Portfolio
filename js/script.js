@@ -63,12 +63,36 @@ setupLink(outlook, urls.outlook, "email");
 /*************************************************** */
 /* script para menu responsivo */
 const btn = document.querySelector(".menu-toggle");
+const openBtn = document.querySelector(".open-sidebar-button");
+const closeBtn = document.querySelector(".close-sidebar-button");
 const link_container = document.querySelector(".link-container");
+const menuLinks = document.querySelectorAll(".menu__link");
 
 // Ao clicar no botão, liga/desliga a classe 'aberto'
 // e adiciona o padding do carousel
 btn.addEventListener("click", () => {
   link_container.classList.toggle("aberto");
+
+  // Atualiza aria-expanded
+  const isOpen = link_container.classList.contains("aberto");
+  openBtn.setAttribute("aria-expanded", isOpen);
+  closeBtn.setAttribute("aria-expanded", isOpen);
+});
+
+// Atualiza aria-current quando um link é clicado
+menuLinks.forEach(link => {
+  link.addEventListener("click", function () {
+    // Remove aria-current de todos os links
+    menuLinks.forEach(l => l.removeAttribute("aria-current"));
+
+    // Adiciona aria-current ao link clicado
+    this.setAttribute("aria-current", "page");
+
+    // Fecha o menu
+    link_container.classList.remove("aberto");
+    openBtn.setAttribute("aria-expanded", false);
+    closeBtn.setAttribute("aria-expanded", false);
+  });
 });
 
 /*************************************************** */

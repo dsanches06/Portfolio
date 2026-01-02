@@ -558,7 +558,7 @@ footer .redes--sociais a {
   min-height: 24px;
   min-width: 24px;
   border-radius: 4px;
-  transition: background-color 0.3s ease;
+  transition: 0.3s ease;
 }
 
 footer .redes--sociais a:hover,
