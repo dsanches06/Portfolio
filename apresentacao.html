@@ -1,0 +1,2072 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apresentação — Portfólio</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #2563eb;
+        --dark: #0f172a;
+        --light: #f8fafc;
+        --white: #ffffff;
+        --accent: #ef4444;
+        --code-bg: #1e293b;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: var(--white);
+        color: var(--dark);
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+      }
+
+      /* --- MODO LISTA (Scroll) --- */
+      body.list-mode {
+        overflow: auto;
+        height: auto;
+        padding: 40px;
+        background-color: #f1f5f9;
+      }
+
+      body.list-mode .slide {
+        position: relative;
+        opacity: 1;
+        visibility: visible;
+        height: auto;
+        min-height: 400px;
+        margin-bottom: 40px;
+        border: 1px solid #cbd5e1;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        display: flex;
+        z-index: 1;
+      }
+
+      body.list-mode .controls,
+      body.list-mode .progress-bar {
+        display: none !important;
+      }
+
+      /* --- SLIDESHOW MODE --- */
+      .slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 4rem 6rem;
+        background: white;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.4s ease, visibility 0.4s ease;
+        z-index: 1;
+      }
+
+      .slide.active {
+        opacity: 1;
+        visibility: visible;
+        z-index: 10;
+      }
+
+      /* --- TIPOGRAFIA --- */
+      h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        color: var(--primary);
+        margin-bottom: 0.5rem;
+        line-height: 1.1;
+      }
+      h2 {
+        font-size: 2rem;
+        font-weight: 600;
+        color: var(--dark);
+        margin-bottom: 1rem;
+        position: relative;
+      }
+      p,
+      li {
+        font-size: 1.1rem;
+        color: #334155;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      .center {
+        text-align: center;
+      }
+
+      /* --- UI ELEMENTS --- */
+      .card {
+        background: var(--light);
+        padding: 1.5rem;
+        border-radius: 12px;
+        border: 1px solid #e2e8f0;
+        text-align: left;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      }
+
+      /* --- CONTROLES --- */
+      .slide-footer {
+        position: absolute;
+        bottom: 2rem;
+        left: 6rem;
+        font-size: 0.9rem;
+        color: #94a3b8;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        z-index: 20;
+      }
+      .controls {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        display: flex;
+        gap: 1rem;
+        z-index: 100;
+      }
+      .view-toggle {
+        position: fixed;
+        top: 2rem;
+        right: 2rem;
+        z-index: 101;
+        padding: 10px 15px;
+        background: white;
+        border: 2px solid var(--primary);
+        color: var(--primary);
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .view-toggle:hover {
+        background: var(--primary);
+        color: white;
+      }
+      .btn {
+        background: var(--dark);
+        color: white;
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s, transform 0.1s;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+      }
+      .btn:hover {
+        background: var(--primary);
+      }
+
+      .btn-link {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 10px 20px;
+        background-color: var(--primary);
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: bold;
+        transition: background 0.2s;
+        font-size: 1rem;
+      }
+      .btn-link:hover {
+        background-color: #1d4ed8;
+      }
+
+      .progress-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        height: 5px;
+        background: var(--primary);
+        width: 0%;
+        transition: width 0.3s;
+        z-index: 100;
+      }
+
+      /* --- SYNTAX HIGHLIGHTING --- */
+      code {
+        color: #334155;
+      }
+      .tag {
+        color: #ef4444;
+      } /* HTML tags */
+      .attr {
+        color: #2563eb;
+      } /* Attributes */
+      .string {
+        color: #16a34a;
+      } /* Strings */
+      .comment {
+        color: #94a3b8;
+        font-style: italic;
+      } /* Comments */
+      .keyword {
+        color: #7c3aed;
+        font-weight: 600;
+      } /* Keywords */
+      .function {
+        color: #0891b2;
+      } /* Functions */
+      .number {
+        color: #ea580c;
+      } /* Numbers */
+
+      /* --- EXAMPLE LAYOUT (side-by-side) --- */
+      .example-row {
+        display: flex;
+        gap: 1.25rem;
+        align-items: flex-start;
+        margin-top: 0.5rem;
+      }
+      .example-desc {
+        flex: 1 1 40%;
+        min-width: 220px;
+      }
+      .example-code {
+        flex: 1 1 60%;
+        min-width: 260px;
+      }
+      @media (max-width: 800px) {
+        .example-row {
+          flex-direction: column;
+        }
+      }
+
+      /* --- MENU DEMO (Acessível) --- */
+      .menu-demo-btn {
+        background: var(--primary);
+        color: #fff;
+        border: none;
+        padding: 0.5rem 0.75rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 700;
+      }
+      .menu-demo-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        z-index: 60;
+      }
+      .menu-demo-overlay[aria-hidden="false"] {
+        display: block;
+      }
+      .menu-demo-sidebar {
+        position: fixed;
+        right: -320px;
+        top: 0;
+        width: 300px;
+        height: 100%;
+        background: var(--white);
+        box-shadow: -8px 0 24px rgba(2, 6, 23, 0.12);
+        z-index: 61;
+        transition: right 0.28s ease;
+        padding: 1rem;
+      }
+      .menu-demo-sidebar.open {
+        right: 0;
+      }
+      .menu-demo-sidebar nav a {
+        display: block;
+        padding: 0.6rem 0.5rem;
+        color: var(--dark);
+        text-decoration: none;
+        border-bottom: 1px solid #eef2ff;
+      }
+      .menu-demo-sidebar nav a:focus {
+        outline: 3px solid var(--primary);
+        outline-offset: 3px;
+      }
+
+      /* Layout exemplos lado a lado */
+      .example-row {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+        margin-top: 0.5rem;
+      }
+      .example-desc {
+        flex: 1 1 40%;
+        min-width: 160px;
+      }
+      .example-code {
+        flex: 1 1 60%;
+      }
+      .example-code pre {
+        margin: 0;
+      }
+      @media (max-width: 900px) {
+        .example-row {
+          flex-direction: column;
+        }
+        .example-desc,
+        .example-code {
+          min-width: auto;
+        }
+      }
+
+      /* --- DEMO SIDEBAR (Menu) --- */
+      .demo-area {
+        position: relative;
+      }
+      .demo-btn {
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 0.5rem 0.8rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      .demo-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        z-index: 60;
+        display: none;
+      }
+      .demo-overlay[aria-hidden="false"],
+      .demo-overlay[hidden="false"] {
+        display: block;
+      }
+      .demo-sidebar {
+        position: fixed;
+        right: -320px;
+        top: 0;
+        width: 300px;
+        height: 100%;
+        background: var(--white);
+        box-shadow: -8px 0 24px rgba(2, 6, 23, 0.12);
+        z-index: 61;
+        transition: right 0.28s ease;
+        padding: 1rem;
+      }
+      .demo-sidebar.open {
+        right: 0;
+      }
+      .demo-sidebar nav a {
+        display: block;
+        padding: 0.6rem 0.5rem;
+        color: var(--dark);
+        text-decoration: none;
+        border-bottom: 1px solid #eef2ff;
+      }
+      .demo-sidebar nav a:focus {
+        outline: 3px solid var(--primary);
+        outline-offset: 3px;
+      }
+
+      @media print {
+        body {
+          overflow: visible;
+          height: auto;
+          background: white;
+        }
+        .slide {
+          position: relative;
+          opacity: 1;
+          visibility: visible;
+          display: flex;
+          height: 100vh;
+          page-break-after: always;
+          border: none;
+          box-shadow: none;
+          padding: 2rem;
+        }
+        .controls,
+        .progress-bar,
+        .view-toggle {
+          display: none !important;
+        }
+      }
+
+      /* --- DEMO RESPONSIVO --- */
+      .responsive-demo {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+      }
+
+      .device-frame {
+        position: relative;
+        border: 8px solid #1a1a1a;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        background: white;
+      }
+
+      .device-frame.mobile {
+        width: 240px;
+        height: 360px;
+      }
+
+      .device-frame.tablet {
+        width: 360px;
+        height: 300px;
+      }
+
+      .device-frame.desktop {
+        width: 480px;
+        height: 280px;
+      }
+
+      .device-frame-content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 12px;
+        overflow: hidden;
+        font-size: 0.6rem;
+        background: #f1f5f9;
+      }
+
+      .device-header {
+        background: #333;
+        color: white;
+        padding: 6px;
+        text-align: center;
+        font-size: 0.5rem;
+        font-weight: bold;
+        margin-bottom: 4px;
+        border-radius: 4px;
+      }
+
+      .device-menu {
+        display: flex;
+        gap: 0.3rem;
+        margin-bottom: 4px;
+      }
+
+      .device-menu.mobile {
+        justify-content: flex-end;
+      }
+
+      .device-menu.mobile-item {
+        width: 20px;
+        height: 16px;
+        background: #2563eb;
+        border-radius: 2px;
+        font-size: 0.4rem;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .device-menu.horizontal {
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      .device-menu.horizontal-item {
+        padding: 3px 6px;
+        background: #2563eb;
+        color: white;
+        border-radius: 3px;
+        font-size: 0.4rem;
+      }
+
+      .device-content {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 4px;
+        overflow: hidden;
+      }
+
+      .device-content.grid-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .device-content.grid-3 {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+
+      .device-box {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 3px;
+        padding: 3px;
+        font-size: 0.4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #666;
+      }
+
+      .device-label {
+        text-align: center;
+        font-weight: bold;
+        margin-top: 8px;
+        font-size: 0.7rem;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="view-toggle" onclick="toggleView()">
+      <i class="fa-solid fa-list"></i> Alternar Vista (Scroll)
+    </button>
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="controls">
+      <button class="btn" onclick="prevSlide()" title="Anterior">
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+      <button class="btn" onclick="nextSlide()" title="Próximo">
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+
+    <!-- SLIDES -->
+
+    <!-- 01: CAPA -->
+    <div class="slide active">
+      <div style="text-align: center">
+        <p
+          style="
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #64748b;
+            margin-bottom: 10px;
+          "
+        >
+          Portfólio — Apresentação
+        </p>
+        <h1 style="margin-bottom: 20px">Danilson Sanches</h1>
+        <p style="color: var(--primary); font-family: 'Fira Code', monospace">
+          Frontend Developer (UpSkill)
+        </p>
+        <div
+          style="
+            margin-top: 40px;
+            font-size: 3rem;
+            color: #cbd5e1;
+            gap: 30px;
+            display: flex;
+            justify-content: center;
+          "
+        >
+          <i class="fa-brands fa-html5"></i>
+          <i class="fa-brands fa-css3-alt"></i>
+          <i class="fa-brands fa-js"></i>
+        </div>
+      </div>
+      <div class="slide-footer">Introdução</div>
+    </div>
+
+    <!-- 02: IDENTIFICAÇÃO -->
+    <div class="slide">
+      <h2 class="center" >Identificação do Aluno</h2>
+      <div class="card">
+        <p><strong>Nome:</strong> Danilson Sanches</p>
+        <p><strong>Numero:</strong> upskill207</p>
+        <p>
+          <strong>Formação:</strong> Frontend Javascript + IA (UPskill -
+          Universidade de Lisboa)
+        </p>
+      </div>
+      <div class="slide-footer">Identificação</div>
+    </div>
+
+    <!-- 03: OBJETIVO -->
+    <div class="slide">
+      <h2 class="center">Objetivo Principal</h2>
+      <p>
+        Demonstrar competências em desenvolvimento web frontend, com foco em
+        interfaces responsivas, acessíveis e performance otimizada.
+      </p>
+      <div class="card" style="margin-top: 1rem">
+        <ul>
+          <li>
+            <strong>HTML5 Semântico</strong> — Estrutura clara e acessível.
+          </li>
+          <li>
+            <strong>CSS Responsivo</strong> — Mobile-first e modularidade.
+          </li>
+          <li>
+            <strong>JavaScript Vanilla</strong> — Interatividade sem
+            dependências.
+          </li>
+          <li>
+            <strong>Acessibilidade (A11y)</strong> — WCAG AA/AAA compliant,
+            navegação por teclado, leitores de tela.
+          </li>
+        </ul>
+      </div>
+      <div class="slide-footer">Objetivo</div>
+    </div>
+
+    <!-- 04: TEMA VISUAL -->
+    <div class="slide">
+      <h2 class="center">Tema Visual / Conceito</h2>
+      <p>
+        Design moderno e minimalista: paleta de alto contraste, tipografia
+        legível e espaçamento generoso para melhor leitura. Interface focada no
+        conteúdo e na usabilidade.
+      </p>
+      <div class="card" style="margin-top: 1rem">
+        <p>
+          <strong>1. Paleta:</strong> alto contraste (ex.: #1a1a1a sobre
+          #ffffff).
+        </p>
+        <pre
+          style="
+            background: #f0f4f8;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            overflow-x: auto;
+          "
+        ><code><span class="keyword">:root</span> {
+  <span class="attr">--text-primary</span>: <span class="number">#1a1a1a</span>;  <span class="comment">/* 19:1 contraste */</span>
+  <span class="attr">--bg-primary</span>: <span class="number">#ffffff</span>;
+  <span class="attr">--text-secondary</span>: <span class="number">#334155</span>;
+  <span class="attr">--bg-secondary</span>: <span class="number">#f1f5f9</span>;
+}
+<span class="keyword">body</span> { <span class="attr">color</span>: <span class="function">var</span>(<span class="string">--text-primary</span>); <span class="attr">background</span>: <span class="function">var</span>(<span class="string">--bg-primary</span>); }</code></pre>
+
+        <p style="margin-top: 0.5rem">
+          <strong>2. Tipografia:</strong> Poppins (corpo) e Fira Code (técnico).
+        </p>
+        <pre
+          style="
+            background: #f0f4f8;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            overflow-x: auto;
+          "
+        ><code><span class="keyword">@import</span> <span class="function">url</span>(<span class="string">'https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800'</span>);
+<span class="keyword">@import</span> <span class="function">url</span>(<span class="string">'https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500'</span>);
+
+<span class="keyword">body</span> { <span class="attr">font-family</span>: <span class="string">'Poppins'</span>, <span class="keyword">sans-serif</span>; }
+<span class="keyword">code</span>, <span class="keyword">pre</span> { <span class="attr">font-family</span>: <span class="string">'Fira Code'</span>, <span class="keyword">monospace</span>; }</code></pre>
+
+        <p style="margin-top: 0.5rem">
+          <strong>3. Responsividade:</strong> mobile-first com breakpoints em
+          768px+.
+        </p>
+        <pre
+          style="
+            background: #f0f4f8;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            overflow-x: auto;
+          "
+        ><code><span class="comment">/* Mobile (base) */</span>
+.<span class="attr">container</span> { <span class="attr">padding</span>: <span class="number">1rem</span>; <span class="attr">font-size</span>: <span class="number">1rem</span>; }
+
+<span class="comment">/* Tablet+ */</span>
+<span class="keyword">@media</span> (<span class="attr">min-width</span>: <span class="number">768px</span>) {
+  .<span class="attr">container</span> { <span class="attr">padding</span>: <span class="number">2rem</span>; <span class="attr">max-width</span>: <span class="number">1200px</span>; }
+}</code></pre>
+      </div>
+      <div class="slide-footer">Conceito</div>
+    </div>
+
+    <!-- 05: DEMONSTRAÇÃO TÉCNICA - NAVEGAÇÃO -->
+    <div class="slide">
+      <h2 class="center">Demonstração Técnica — Navegação</h2>
+      <p>Modo de navegação completo implementado para todos os utilizadores:</p>
+      <div class="card">
+        <p>
+          <strong>1. Mouse (Desktop):</strong> Menu horizontal, links internos e
+          botões funcionam com clique.
+        </p>
+        <pre
+          style="
+            background: #f0f4f8;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            overflow-x: auto;
+          "
+        ><code><span class="tag">&lt;nav&gt;</span>
+  <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="string">"#sobre"</span> <span class="attr">onclick</span>=<span class="string">"scrollTo('#sobre')"</span><span class="tag">&gt;</span>Sobre<span class="tag">&lt;/a&gt;</span>
+  <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="string">"#projetos"</span><span class="tag">&gt;</span>Projetos<span class="tag">&lt;/a&gt;</span>
+<span class="tag">&lt;/nav&gt;</span></code></pre>
+
+        <p style="margin-top: 0.5rem">
+          <strong>2. Teclado:</strong> Tab/Shift+Tab navegam; Enter ativa; ESC
+          fecha menus.
+        </p>
+        <pre
+          style="
+            background: #f0f4f8;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            overflow-x: auto;
+          "
+        ><code><span class="keyword">document</span>.<span class="function">addEventListener</span>(<span class="string">'keydown'</span>, (e) <span class="keyword">=></span> {
+  <span class="keyword">if</span> (e.key <span class="keyword">===</span> <span class="string">'Enter'</span>) <span class="function">linkActive</span>();
+  <span class="keyword">if</span> (e.key <span class="keyword">===</span> <span class="string">'Escape'</span>) <span class="function">closeMenu</span>();
+});</code></pre>
+
+        <p style="margin-top: 0.5rem">
+          <strong>3. Mobile (Sidebar):</strong> Menu hambúrguer com overlay e
+          gestão de foco.
+        </p>
+        <pre
+          style="
+            background: #f0f4f8;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            overflow-x: auto;
+          "
+        ><code><span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="string">"menu-btn"</span> <span class="attr">aria-controls</span>=<span class="string">"sidebar"</span><span class="tag">&gt;</span>☰<span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">id</span>=<span class="string">"sidebar"</span> <span class="attr">class</span>=<span class="string">"sidebar"</span> <span class="attr">style</span>=<span class="string">"left: -100%;"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span>
+<span class="comment">/* CSS: transição suave */</span>
+.<span class="attr">sidebar</span> { <span class="attr">transition</span>: <span class="number">left</span> <span class="number">0.3s</span> <span class="keyword">ease</span>; }</code></pre>
+
+        <p style="margin-top: 0.5rem">
+          <strong>4. Leitores de tela:</strong> Landmarks ARIA e labels
+          descritivos.
+        </p>
+        <pre
+          style="
+            background: #f0f4f8;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            overflow-x: auto;
+          "
+        ><code><span class="tag">&lt;header&gt;&lt;nav</span> <span class="attr">aria-label</span>=<span class="string">"Menu principal"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/nav&gt;&lt;/header&gt;</span>
+<span class="tag">&lt;main&gt;</span>
+  <span class="tag">&lt;section</span> <span class="attr">aria-labelledby</span>=<span class="string">"sec-sobre"</span><span class="tag">&gt;&lt;h2</span> <span class="attr">id</span>=<span class="string">"sec-sobre"</span><span class="tag">&gt;</span>Sobre<span class="tag">&lt;/h2&gt;&lt;/section&gt;</span>
+<span class="tag">&lt;/main&gt;</span>
+<span class="tag">&lt;footer&gt;</span>...<span class="tag">&lt;/footer&gt;</span></code></pre>
+      </div>
+      <div class="slide-footer">Navegação</div>
+    </div>
+
+    <!-- 06: DEMONSTRAÇÃO TÉCNICA - RESPONSIVIDADE -->
+    <div class="slide">
+      <h2 class="center">Demonstração Técnica — Responsividade</h2>
+      <p>Como adaptar a diferentes formatos de ecrã e como testar:</p>
+      <div class="card">
+        <ul>
+          <li>
+            <strong>Mobile (base):</strong> layout single-column, menu sidebar,
+            touch-friendly.
+          </li>
+          <li>
+            <strong>Tablet (>=768px):</strong> menu horizontal, grids de 2
+            colunas para projetos.
+          </li>
+          <li>
+            <strong>Desktop (>=1024px):</strong> layout de conteúdo centralizado
+            com múltiplas colunas.
+          </li>
+          <li>
+            <strong>Testes:</strong> DevTools (F12) → Device Toolbar;
+            redimensionar; verificar overflow e touch targets.
+          </li>
+        </ul>
+      </div>
+      <div class="slide-footer">Responsividade</div>
+    </div>
+
+    <!-- 06B: MEDIA QUERIES - MOBILE -->
+    <div class="slide">
+      <h2 class="center">Media Queries — Mobile</h2>
+      <div class="card" style="max-height: 450px; overflow-y: auto;">
+        <p><strong>Layout Base (Mobile-First):</strong></p>
+        <pre
+          style="
+            background: #f0f4f8;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            overflow-x: auto;
+          "
+        ><code><span class="comment">/* Mobile-first: single-column layout */</span>
+<span class="comment">/* Sem media queries, aplicado a todos os tamanhos */</span>
+
+.<span class="attr">container</span> {
+  <span class="attr">padding</span>: <span class="number">1rem</span>;
+  <span class="attr">max-width</span>: <span class="number">100%</span>;
+  <span class="attr">margin</span>: <span class="number">0</span> <span class="keyword">auto</span>;
+}
+
+.<span class="attr">projects__container</span> {
+  <span class="attr">display</span>: <span class="keyword">flex</span>;
+  <span class="attr">flex-direction</span>: <span class="keyword">column</span>;
+  <span class="attr">gap</span>: <span class="number">1.5rem</span>;
+}
+
+.<span class="attr">project__card</span> {
+  <span class="attr">width</span>: <span class="number">100%</span>;
+  <span class="attr">padding</span>: <span class="number">1rem</span>;
+  <span class="attr">border</span>: <span class="number">1px</span> <span class="keyword">solid</span> <span class="number">#ddd</span>;
+  <span class="attr">border-radius</span>: <span class="number">8px</span>;
+}
+
+.<span class="attr">menu</span> {
+  <span class="attr">position</span>: <span class="keyword">fixed</span>;
+  <span class="attr">left</span>: <span class="number">-100%</span>;
+  <span class="attr">top</span>: <span class="number">0</span>;
+  <span class="attr">width</span>: <span class="number">220px</span>;
+  <span class="attr">height</span>: <span class="number">100vh</span>;
+  <span class="attr">transition</span>: <span class="number">left</span> <span class="number">0.3s</span> <span class="keyword">ease</span>;
+  <span class="attr">background</span>: <span class="number">#333</span>;
+}
+
+<span class="comment">/* Botão menu visível no mobile */</span>
+.<span class="attr">menu-toggle</span> {
+  <span class="attr">display</span>: <span class="keyword">block</span>;
+  <span class="attr">background</span>: <span class="keyword">none</span>;
+  <span class="attr">border</span>: <span class="keyword">none</span>;
+  <span class="attr">font-size</span>: <span class="number">1.5rem</span>;
+  <span class="attr">cursor</span>: <span class="keyword">pointer</span>;
+}</code></pre>
+      </div>
+      <div class="slide-footer">Media Queries Mobile</div>
+    </div>
+
+    <!-- 06C: MEDIA QUERIES - TABLET -->
+    <div class="slide">
+      <h2 class="center">Media Queries — Tablet</h2>
+      <div class="card" style="max-height: 450px; overflow-y: auto;">
+        <p><strong>A partir de 768px (Tablet):</strong></p>
+        <pre
+          style="
+            background: #f0f4f8;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            overflow-x: auto;
+          "
+        ><code><span class="keyword">@media</span> (<span class="attr">min-width</span>: <span class="number">768px</span>) {
+  <span class="comment">/* Menu horizontal visível */</span>
+  .<span class="attr">menu</span> {
+    <span class="attr">position</span>: <span class="keyword">static</span>;
+    <span class="attr">display</span>: <span class="keyword">flex</span>;
+    <span class="attr">width</span>: <span class="keyword">auto</span>;
+    <span class="attr">height</span>: <span class="keyword">auto</span>;
+    <span class="attr">background</span>: <span class="keyword">transparent</span>;
+    <span class="attr">flex-direction</span>: <span class="keyword">row</span>;
+    <span class="attr">gap</span>: <span class="number">1rem</span>;
+  }
+
+  <span class="comment">/* Botão menu escondido no tablet+ */</span>
+  .<span class="attr">menu-toggle</span> {
+    <span class="attr">display</span>: <span class="keyword">none</span>;
+  }
+
+  .<span class="attr">container</span> {
+    <span class="attr">max-width</span>: <span class="number">768px</span>;
+  }
+
+  <span class="comment">/* Grid com 2 colunas */</span>
+  .<span class="attr">projects__container</span> {
+    <span class="attr">display</span>: <span class="keyword">grid</span>;
+    <span class="attr">grid-template-columns</span>: <span class="keyword">repeat</span>(<span class="number">2</span>, <span class="number">1fr</span>);
+    <span class="attr">gap</span>: <span class="number">2rem</span>;
+  }
+
+  .<span class="attr">project__card</span> {
+    <span class="attr">padding</span>: <span class="number">1.5rem</span>;
+  }
+}</code></pre>
+      </div>
+      <div class="slide-footer">Media Queries Tablet</div>
+    </div>
+
+    <!-- 06D: MEDIA QUERIES - DESKTOP -->
+    <div class="slide">
+      <h2 class="center">Media Queries — Desktop</h2>
+      <div class="card" style="max-height: 450px; overflow-y: auto;">
+        <p><strong>A partir de 1024px (Desktop):</strong></p>
+        <pre
+          style="
+            background: #f0f4f8;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            overflow-x: auto;
+          "
+        ><code><span class="keyword">@media</span> (<span class="attr">min-width</span>: <span class="number">1024px</span>) {
+  .<span class="attr">main</span> {
+    <span class="attr">max-width</span>: <span class="number">1200px</span>;
+    <span class="attr">margin</span>: <span class="number">0</span> <span class="keyword">auto</span>;
+    <span class="attr">padding</span>: <span class="number">3rem 2rem</span>;
+  }
+
+  .<span class="attr">container</span> {
+    <span class="attr">max-width</span>: <span class="number">1200px</span>;
+    <span class="attr">padding</span>: <span class="number">2rem</span>;
+  }
+
+  <span class="comment">/* Grid com 3 colunas */</span>
+  .<span class="attr">projects__container</span> {
+    <span class="attr">grid-template-columns</span>: <span class="keyword">repeat</span>(<span class="number">3</span>, <span class="number">1fr</span>);
+    <span class="attr">gap</span>: <span class="number">2.5rem</span>;
+  }
+
+  .<span class="attr">project__card</span> {
+    <span class="attr">padding</span>: <span class="number">2rem</span>;
+    <span class="attr">transition</span>: <span class="number">0.3s</span>;
+  }
+
+  .<span class="attr">project__card</span><span class="keyword">:hover</span> {
+    <span class="attr">transform</span>: <span class="number">translateY</span>(<span class="number">-4px</span>);
+    <span class="attr">box-shadow</span>: <span class="number">0 8px 16px</span> <span class="keyword">rgba</span>(<span class="number">0, 0, 0, 0.1</span>);
+  }
+
+  <span class="comment">/* Layout flexível para seções */</span>
+  .<span class="attr">about__content</span> {
+    <span class="attr">display</span>: <span class="keyword">flex</span>;
+    <span class="attr">flex-direction</span>: <span class="keyword">row</span>;
+    <span class="attr">gap</span>: <span class="number">3rem</span>;
+    <span class="attr">align-items</span>: <span class="keyword">center</span>;
+  }
+}</code></pre>
+      </div>
+      <div class="slide-footer">Media Queries Desktop</div>
+    </div>
+
+    <!-- 06C: VISUALIZAÇÃO RESPONSIVA — PROJETOS (MOBILE) -->
+    <div class="slide">
+      <h2 class="center">Visualização Responsiva — Projetos (Mobile)</h2>
+      <p>Exemplo de imagem otimizada para mobile:</p>
+      <div style="max-width:720px;margin:0 auto;">
+        <img src="assets/apresentacao/412.png" alt="Projeto mobile 412px" style="width:100%;height:auto;border-radius:6px;display:block;" loading="lazy">
+      </div>
+      <div class="slide-footer">Visualização Responsiva — Projetos (Mobile)</div>
+    </div>
+
+    <!-- 06C: VISUALIZAÇÃO RESPONSIVA — PROJETOS (MOBILE) -->
+    <div class="slide">
+      <h2 class="center">Visualização Responsiva — Projetos (Mobile)</h2>
+      <p>Exemplo de imagem otimizada para mobile:</p>
+      <div style="max-width:720px;margin:0 auto;">
+        <img src="assets/apresentacao/648.png" alt="Projeto mobile 412px" style="width:100%;height:auto;border-radius:6px;display:block;" loading="lazy">
+      </div>
+      <div class="slide-footer">Visualização Responsiva — Projetos (Mobile)</div>
+    </div>
+
+    <!-- 06D: VISUALIZAÇÃO RESPONSIVA — PROJETOS (TABLET) -->
+    <div class="slide">
+      <h2 class="center">Visualização Responsiva — Projetos (Tablet)</h2>
+      <p>Exemplo de imagem otimizada para tablet:</p>
+      <div style="max-width:720px;margin:0 auto;">
+        <img src="assets/apresentacao/768.png" alt="Projeto tablet 768px" style="width:100%;height:auto;border-radius:6px;display:block;" loading="lazy">
+      </div>
+      <div class="slide-footer">Visualização Responsiva — Projetos (Tablet)</div>
+    </div>
+
+    <!-- 06E: VISUALIZAÇÃO RESPONSIVA — PROJETOS (DESKTOP) -->
+    <div class="slide">
+      <h2 class="center">Visualização Responsiva — Projetos (Desktop)</h2>
+      <p>Exemplo de imagem otimizada para desktop:</p>
+      <div style="max-width:1080px;margin:0 auto;">
+        <img src="assets/apresentacao/1024.png" alt="Projeto desktop 1024px" style="width:100%;height:auto;border-radius:6px;display:block;" loading="lazy">
+      </div>
+      <div class="slide-footer">Visualização Responsiva — Projetos (Desktop)</div>
+    </div>
+
+    <!-- 06D: OTIMIZAÇÕES PARA MOBILE -->
+    <div class="slide">
+      <h2 class="center">Otimizações para Mobile (Touch)</h2>
+      <div class="card">
+        <p><strong>1. Touch Targets:</strong> Botões e links com tamanho ≥44x44px</p>
+        <pre
+          style="
+            background: #f0f4f8;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            overflow-x: auto;
+          "
+        ><code>.<span class="attr">btn</span>, .<span class="attr">link</span> {
+  <span class="attr">min-width</span>: <span class="number">44px</span>;
+  <span class="attr">min-height</span>: <span class="number">44px</span>;
+  <span class="attr">padding</span>: <span class="number">0.75rem 1rem</span>;
+  <span class="attr">display</span>: <span class="keyword">flex</span>;
+  <span class="attr">align-items</span>: <span class="keyword">center</span>;
+}</code></pre>
+
+        <p style="margin-top: 0.5rem"><strong>2. Viewport & Zoom:</strong> Meta tag essencial</p>
+        <pre
+          style="
+            background: #f0f4f8;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            overflow-x: auto;
+          "
+        ><code><span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> 
+      <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span><span class="tag">&gt;</span></code></pre>
+
+        <p style="margin-top: 0.5rem"><strong>3. Espaçamento (Gap):</strong> Evita seleção acidental</p>
+        <pre
+          style="
+            background: #f0f4f8;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            overflow-x: auto;
+          "
+        ><code>.<span class="attr">menu</span> {
+  <span class="attr">display</span>: <span class="keyword">flex</span>;
+  <span class="attr">flex-direction</span>: <span class="keyword">column</span>;
+  <span class="attr">gap</span>: <span class="number">0.75rem</span>; <span class="comment">/* Espaço entre itens */</span>
+}</code></pre>
+
+        <p style="margin-top: 0.5rem"><strong>4. Tipografia Mobile:</strong> Tamanho e contraste</p>
+        <pre
+          style="
+            background: #f0f4f8;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            overflow-x: auto;
+          "
+        ><code><span class="keyword">body</span> {
+  <span class="attr">font-size</span>: <span class="number">16px</span>; <span class="comment">/* Evita zoom em inputs */</span>
+  <span class="attr">line-height</span>: <span class="number">1.6</span>;
+  <span class="attr">color</span>: <span class="number">#1a1a1a</span>; <span class="comment">/* 19:1 contraste */</span>
+  <span class="attr">background</span>: <span class="number">#ffffff</span>;
+}</code></pre>
+
+        <p style="margin-top: 0.5rem"><strong>5. Sidebar Menu (Mobile):</strong> Desliza da esquerda</p>
+        <pre
+          style="
+            background: #f0f4f8;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            overflow-x: auto;
+          "
+        ><code>.<span class="attr">sidebar</span> {
+  <span class="attr">position</span>: <span class="keyword">fixed</span>;
+  <span class="attr">left</span>: <span class="number">-100%</span>;
+  <span class="attr">top</span>: <span class="number">0</span>;
+  <span class="attr">width</span>: <span class="number">220px</span>;
+  <span class="attr">height</span>: <span class="number">100vh</span>;
+  <span class="attr">transition</span>: <span class="number">left</span> <span class="number">0.3s</span> <span class="keyword">ease</span>;
+  <span class="attr">z-index</span>: <span class="number">100</span>;
+}
+
+.<span class="attr">sidebar</span>.<span class="attr">open</span> { <span class="attr">left</span>: <span class="number">0</span>; }</code></pre>
+      </div>
+      <div class="slide-footer">Mobile-first</div>
+    </div>
+
+    <!-- 07: DEMONSTRAÇÃO TÉCNICA - MENU -->
+    <!-- 07A: TESTES - DEVTOOLS -->
+    <div class="slide">
+      <h2 class="center">Testes: DevTools (F12) — Device Toolbar</h2>
+      <div class="card">
+        <p><strong>Procedimentos rápidos:</strong> abrir DevTools (F12) → Device Toolbar → redimensionar; verificar overflow e touch targets (≥44×44px).</p>
+        <div style="display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-top:0.5rem;">
+          <figure style="max-width:640px;text-align:center;">
+            <img src="assets/devtools/01.png" alt="DevTools Device Toolbar exemplo" style="width:100%;height:auto;border-radius:6px;display:block;" loading="lazy">
+            <figcaption style="font-size:0.85rem;margin-top:0.4rem;">DevTools — Device Toolbar / overflow & touch targets</figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="slide-footer">DevTools</div>
+    </div>
+
+    <div class="slide">
+      <h2 class="center">Funcionamento do Menu de Navegação</h2>
+      <div class="card">
+        <p>
+          Implementação baseada em padrão checkbox/toggle com controlo por
+          JavaScript para acessibilidade:
+        </p>
+        <ul>
+          <li>Botão hambúrguer com `aria-expanded` e `aria-controls`.</li>
+          <li>Sidebar desliza com transição e overlay clicável para fechar.</li>
+          <li>
+            Auto-fechar ao clicar num link e retorno do foco quando fechado.
+          </li>
+        </ul>
+      </div>
+      <div class="slide-footer">Menu</div>
+    </div>
+
+    <!-- 07B: MENU HAMBÚRGUER - HTML -->
+    <div class="slide">
+      <h2 class="center">Menu Hambúrguer — HTML</h2>
+      
+      <div class="card" style="max-height: 480px; overflow-y: auto;">
+        <p><strong>Estrutura Acessível com ARIA:</strong></p>
+        <pre
+          style="
+            background: #f0f4f8;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            overflow-x: auto;
+          "
+        ><code><span class="comment">&lt;!-- Botão de Menu --&gt;</span>
+<span class="tag">&lt;button</span>
+  <span class="attr">id</span>=<span class="string">"menuBtn"</span>
+  <span class="attr">class</span>=<span class="string">"menu-toggle"</span>
+  <span class="attr">aria-expanded</span>=<span class="string">"false"</span>
+  <span class="attr">aria-controls</span>=<span class="string">"sidebar"</span>
+  <span class="attr">aria-label</span>=<span class="string">"Abrir menu de navegação"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;i</span> <span class="attr">class</span>=<span class="string">"fa-solid fa-bars"</span><span class="tag">&gt;&lt;/i&gt;</span>
+<span class="tag">&lt;/button&gt;</span>
+
+<span class="comment">&lt;!-- Overlay para fechar ao clicar --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">id</span>=<span class="string">"overlay"</span> <span class="attr">class</span>=<span class="string">"overlay"</span><span class="tag">&gt;&lt;/div&gt;</span>
+
+<span class="comment">&lt;!-- Sidebar menu --&gt;</span>
+<span class="tag">&lt;nav</span>
+  <span class="attr">id</span>=<span class="string">"sidebar"</span>
+  <span class="attr">class</span>=<span class="string">"sidebar"</span>
+  <span class="attr">role</span>=<span class="string">"navigation"</span>
+  <span class="attr">aria-label</span>=<span class="string">"Menu principal"</span>
+  <span class="attr">aria-hidden</span>=<span class="string">"true"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;ul&gt;</span>
+    <span class="tag">&lt;li&gt;&lt;a</span> <span class="attr">href</span>=<span class="string">"#sobre"</span><span class="tag">&gt;</span>Sobre<span class="tag">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="tag">&lt;li&gt;&lt;a</span> <span class="attr">href</span>=<span class="string">"#projetos"</span><span class="tag">&gt;</span>Projetos<span class="tag">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="tag">&lt;li&gt;&lt;a</span> <span class="attr">href</span>=<span class="string">"#contacto"</span><span class="tag">&gt;</span>Contacto<span class="tag">&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="tag">&lt;/ul&gt;</span>
+<span class="tag">&lt;/nav&gt;</span>
+
+<span class="comment">&lt;!-- ARIA Attributes --&gt;</span>
+<span class="comment">&lt;!-- aria-expanded: indica se menu está aberto/fechado --&gt;</span>
+<span class="comment">&lt;!-- aria-controls: liga botão ao elemento que controla --&gt;</span>
+<span class="comment">&lt;!-- aria-hidden: esconde do leitor de tela --&gt;</span>
+<span class="comment">&lt;!-- role="navigation": identifica nav --&gt;</span></code></pre>
+      </div>
+      <div class="slide-footer">Menu HTML</div>
+    </div>
+
+    <!-- 07C: MENU HAMBÚRGUER - CSS -->
+    <div class="slide">
+      <h2 class="center">Menu Hambúrguer — CSS</h2>
+      
+      <div class="card" style="max-height: 480px; overflow-y: auto;">
+        <p><strong>Sidebar Deslizante com Transições:</strong></p>
+        <pre
+          style="
+            background: #f0f4f8;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            overflow-x: auto;
+          "
+        ><code><span class="comment">/* Botão Menu */</span>
+.<span class="attr">menu-toggle</span> {
+  <span class="attr">background</span>: <span class="keyword">none</span>;
+  <span class="attr">border</span>: <span class="keyword">none</span>;
+  <span class="attr">font-size</span>: <span class="number">1.5rem</span>;
+  <span class="attr">cursor</span>: <span class="keyword">pointer</span>;
+  <span class="attr">min-width</span>: <span class="number">44px</span>;
+  <span class="attr">min-height</span>: <span class="number">44px</span>;
+}
+
+<span class="comment">/* Sidebar - escondido por padrão */</span>
+.<span class="attr">sidebar</span> {
+  <span class="attr">position</span>: <span class="keyword">fixed</span>;
+  <span class="attr">left</span>: <span class="number">-100%</span>;
+  <span class="attr">top</span>: <span class="number">0</span>;
+  <span class="attr">width</span>: <span class="number">220px</span>;
+  <span class="attr">height</span>: <span class="number">100vh</span>;
+  <span class="attr">background</span>: <span class="number">#333</span>;
+  <span class="attr">padding</span>: <span class="number">1rem</span>;
+  <span class="attr">transition</span>: <span class="number">left</span> <span class="number">0.3s</span> <span class="keyword">ease</span>;
+  <span class="attr">z-index</span>: <span class="number">100</span>;
+  <span class="attr">overflow-y</span>: <span class="keyword">auto</span>;
+}
+
+<span class="comment">/* Quando aberto */</span>
+.<span class="attr">sidebar</span>.<span class="attr">open</span> {
+  <span class="attr">left</span>: <span class="number">0</span>;
+}
+
+<span class="comment">/* Overlay - semitransparente */</span>
+.<span class="attr">overlay</span> {
+  <span class="attr">position</span>: <span class="keyword">fixed</span>;
+  <span class="attr">inset</span>: <span class="number">0</span>;
+  <span class="attr">background</span>: <span class="keyword">rgba</span>(<span class="number">0, 0, 0, 0.5</span>);
+  <span class="attr">display</span>: <span class="keyword">none</span>;
+  <span class="attr">z-index</span>: <span class="number">99</span>;
+}
+
+<span class="comment">/* Overlay visível quando menu aberto */</span>
+.<span class="attr">overlay</span>.<span class="attr">open</span> {
+  <span class="attr">display</span>: <span class="keyword">block</span>;
+}
+
+<span class="comment">/* Links do menu */</span>
+.<span class="attr">sidebar</span> a {
+  <span class="attr">display</span>: <span class="keyword">block</span>;
+  <span class="attr">padding</span>: <span class="number">0.75rem</span>;
+  <span class="attr">color</span>: <span class="keyword">white</span>;
+  <span class="attr">text-decoration</span>: <span class="keyword">none</span>;
+  <span class="attr">transition</span>: <span class="number">0.2s</span>;
+}
+
+.<span class="attr">sidebar</span> a<span class="keyword">:hover</span>, .<span class="attr">sidebar</span> a<span class="keyword">:focus</span> {
+  <span class="attr">background</span>: <span class="number">#555</span>;
+}</code></pre>
+      </div>
+      <div class="slide-footer">Menu CSS</div>
+    </div>
+
+    <!-- 06C: DEMO VISUAL RESPONSIVA (APENAS IMAGENS) -->
+    <div class="slide">
+      <h2 class="center">Visualização Responsiva — Projetos</h2>
+      <p>Imagens do portfólio por largura (exemplos):</p>
+
+      <div class="projects-images" style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;">
+        <figure style="flex:1 1 180px;max-width:220px;">
+          <img src="assets/apresentacao/412.png" alt="Projeto - 412px" style="width:100%;height:auto;border-radius:6px;display:block;" loading="lazy">
+          <figcaption style="text-align:center;font-size:0.85rem;margin-top:0.4rem;">412px</figcaption>
+        </figure>
+
+        <figure style="flex:1 1 220px;max-width:280px;">
+          <img src="assets/apresentacao/648.png" alt="Projeto - 648px" style="width:100%;height:auto;border-radius:6px;display:block;" loading="lazy">
+          <figcaption style="text-align:center;font-size:0.85rem;margin-top:0.4rem;">648px</figcaption>
+        </figure>
+
+        <figure style="flex:1 1 240px;max-width:300px;">
+          <img src="assets/apresentacao/768.png" alt="Projeto - 768px" style="width:100%;height:auto;border-radius:6px;display:block;" loading="lazy">
+          <figcaption style="text-align:center;font-size:0.85rem;margin-top:0.4rem;">768px</figcaption>
+        </figure>
+
+        <figure style="flex:1 1 300px;max-width:360px;">
+          <img src="assets/apresentacao/1024.png" alt="Projeto - 1024px" style="width:100%;height:auto;border-radius:6px;display:block;" loading="lazy">
+          <figcaption style="text-align:center;font-size:0.85rem;margin-top:0.4rem;">1024px</figcaption>
+        </figure>
+      </div>
+
+      <div class="slide-footer">Layouts Responsivos</div>
+    </div>
+
+    <!-- 07X: EXEMPLO - TESTE DE ELEMENTOS INTERATIVOS -->
+    <div class="slide">
+      <h2 class="center">Teste de Elementos Interativos</h2>
+      <div class="card" style="max-height: 480px; overflow-y: auto;">
+        <pre
+          style="background: #f0f4f8; padding: 0.5rem; border-radius: 6px; font-size: 0.75rem; overflow-x: auto;"
+        ><code><span class="comment">&lt;!-- HTML Semântico --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="string">"#sobre"</span> <span class="attr">class</span>=<span class="string">"nav-link"</span><span class="tag">&gt;</span>Sobre<span class="tag">&lt;/a&gt;</span>
+<span class="tag">&lt;button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"btn"</span><span class="tag">&gt;</span>Enviar<span class="tag">&lt;/button&gt;</span>
+
+<span class="comment">&lt;!-- CSS: Focus Visível e Hover --&gt;</span>
+a, button {
+  <span class="attr">transition</span>: <span class="number">0.2s</span> <span class="keyword">ease</span>;
+}
+
+a<span class="keyword">:focus</span>, button<span class="keyword">:focus</span> {
+  <span class="attr">outline</span>: <span class="number">3px</span> <span class="keyword">solid</span> <span class="number">#2563eb</span>;
+  <span class="attr">outline-offset</span>: <span class="number">2px</span>;
+}
+
+a<span class="keyword">:hover</span> { <span class="attr">text-decoration</span>: <span class="keyword">underline</span>; }
+button<span class="keyword">:hover</span> { <span class="attr">background</span>: <span class="number">#1d4ed8</span>; }
+
+<span class="comment">&lt;!-- JS: Enter também funciona --&gt;</span>
+button.<span class="function">addEventListener</span>(<span class="string">'keydown'</span>, (e) => {
+  <span class="keyword">if</span> (e.<span class="attr">key</span> === <span class="string">'Enter'</span>) {
+    button.<span class="function">click</span>();
+  }
+});</code></pre>
+      </div>
+      <div class="slide-footer">Teste de Elementos Interativos</div>
+    </div>
+
+    <!-- 08B: FORMULÁRIO -->
+    <div class="slide">
+      <h2 class="center">Interativos — Formulário</h2>
+      <div class="card" style="max-height: 480px; overflow-y: auto;">
+        <p><strong>Validação HTML5 + Mensagens JS Customizadas:</strong></p>
+        <pre
+          style="
+            background: #f0f4f8;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.65rem;
+            overflow-x: auto;
+          "
+        ><code><span class="comment">&lt;!-- HTML com validação --&gt;</span>
+<span class="tag">&lt;form</span> <span class="attr">id</span>=<span class="string">"contactForm"</span> <span class="attr">novalidate</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"nome"</span> 
+         <span class="attr">required</span> <span class="attr">minlength</span>=<span class="string">"3"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="string">"email"</span> <span class="attr">name</span>=<span class="string">"email"</span> 
+         <span class="attr">required</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;textarea</span> <span class="attr">name</span>=<span class="string">"mensagem"</span> 
+           <span class="attr">required</span> <span class="attr">minlength</span>=<span class="string">"10"</span><span class="tag">&gt;&lt;/textarea&gt;</span>
+  <span class="tag">&lt;button</span> <span class="attr">type</span>=<span class="string">"submit"</span><span class="tag">&gt;</span>Enviar<span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;/form&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">id</span>=<span class="string">"mensagem"</span> <span class="attr">class</span>=<span class="string">"feedback"</span><span class="tag">&gt;&lt;/div&gt;</span>
+
+<span class="comment">&lt;!-- JS: Validação customizada --&gt;</span>
+<span class="keyword">const</span> form = <span class="function">document</span>.<span class="attr">getElementById</span>(<span class="string">'contactForm'</span>);
+<span class="keyword">const</span> feedback = <span class="function">document</span>.<span class="attr">getElementById</span>(<span class="string">'mensagem'</span>);
+
+form.<span class="function">addEventListener</span>(<span class="string">'submit'</span>, (e) => {
+  e.<span class="function">preventDefault</span>();
+  
+  <span class="keyword">if</span> (form.<span class="attr">checkValidity</span>()) {
+    feedback.<span class="attr">textContent</span> = <span class="string">'✓ Mensagem enviada!'</span>;
+    feedback.<span class="attr">className</span> = <span class="string">'feedback success'</span>;
+    form.<span class="function">reset</span>();
+  } <span class="keyword">else</span> {
+    feedback.<span class="attr">textContent</span> = <span class="string">'✗ Preencha todos'</span>;
+    feedback.<span class="attr">className</span> = <span class="string">'feedback error'</span>;
+  }
+});</code></pre>
+      </div>
+      <div class="slide-footer">Formulário</div>
+    </div>
+
+    <!-- 08C: BACK-TO-TOP -->
+    <div class="slide">
+      <h2 class="center">Interativos — Back-to-Top</h2>
+      <div class="card" style="max-height: 480px; overflow-y: auto;">
+        <p><strong>Aparece ao Rolar + Scroll Suave:</strong></p>
+        <pre
+          style="
+            background: #f0f4f8;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.65rem;
+            overflow-x: auto;
+          "
+        ><code><span class="comment">&lt;!-- HTML --&gt;</span>
+<span class="tag">&lt;button</span> <span class="attr">id</span>=<span class="string">"backToTop"</span> <span class="attr">class</span>=<span class="string">"back-to-top"</span> 
+        <span class="attr">aria-label</span>=<span class="string">"Voltar ao topo"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;i</span> <span class="attr">class</span>=<span class="string">"fa-solid fa-arrow-up"</span><span class="tag">&gt;&lt;/i&gt;</span>
+<span class="tag">&lt;/button&gt;</span>
+
+<span class="comment">&lt;!-- CSS: Aparecer ao rolar --&gt;</span>
+.<span class="attr">back-to-top</span> {
+  <span class="attr">position</span>: <span class="keyword">fixed</span>;
+  <span class="attr">bottom</span>: <span class="number">30px</span>;
+  <span class="attr">right</span>: <span class="number">30px</span>;
+  <span class="attr">opacity</span>: <span class="number">0</span>;
+  <span class="attr">visibility</span>: <span class="keyword">hidden</span>;
+  <span class="attr">transition</span>: <span class="number">0.3s</span>;
+}
+
+.<span class="attr">back-to-top</span>.<span class="attr">show</span> {
+  <span class="attr">opacity</span>: <span class="number">1</span>;
+  <span class="attr">visibility</span>: <span class="keyword">visible</span>;
+}
+
+<span class="comment">&lt;!-- JS: Scroll suave --&gt;</span>
+<span class="keyword">const</span> backBtn = <span class="function">document</span>.<span class="attr">getElementById</span>(<span class="string">'backToTop'</span>);
+
+<span class="function">window</span>.<span class="function">addEventListener</span>(<span class="string">'scroll'</span>, () => {
+  <span class="keyword">if</span> (<span class="function">window</span>.<span class="attr">scrollY</span> > <span class="number">300</span>) {
+    backBtn.<span class="attr">classList</span>.<span class="attr">add</span>(<span class="string">'show'</span>);
+  } <span class="keyword">else</span> {
+    backBtn.<span class="attr">classList</span>.<span class="attr">remove</span>(<span class="string">'show'</span>);
+  }
+});
+
+backBtn.<span class="function">addEventListener</span>(<span class="string">'click'</span>, () => {
+  <span class="function">window</span>.<span class="function">scrollTo</span>({
+    <span class="attr">top</span>: <span class="number">0</span>,
+    <span class="attr">behavior</span>: <span class="string">'smooth'</span>
+  });
+});</code></pre>
+      </div>
+      <div class="slide-footer">Back-to-Top</div>
+    </div>
+
+    <!-- 08D: HOVER/FOCUS -->
+    <div class="slide">
+      <h2 class="center">Interativos — Hover/Focus</h2>
+      <div class="card" style="max-height: 480px; overflow-y: auto;">
+        <p><strong>Efeitos Visuais e Acessibilidade:</strong></p>
+        <pre
+          style="
+            background: #f0f4f8;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.65rem;
+            overflow-x: auto;
+          "
+        ><code><span class="comment">&lt;!-- CSS: Estados completos --&gt;</span>
+button {
+  <span class="attr">position</span>: <span class="keyword">relative</span>;
+  <span class="attr">background</span>: <span class="number">#2563eb</span>;
+  <span class="attr">color</span>: <span class="keyword">white</span>;
+  <span class="attr">border</span>: <span class="number">none</span>;
+  <span class="attr">padding</span>: <span class="number">0.75rem 1.5rem</span>;
+  <span class="attr">min-height</span>: <span class="number">44px</span>;
+  <span class="attr">cursor</span>: <span class="keyword">pointer</span>;
+  <span class="attr">transition</span>: <span class="number">0.2s</span>;
+}
+
+button<span class="keyword">:hover</span> {
+  <span class="attr">background</span>: <span class="number">#1d4ed8</span>;
+  <span class="attr">transform</span>: <span class="function">translateY</span>(<span class="number">-2px</span>);
+  <span class="attr">box-shadow</span>: <span class="number">0 4px 12px</span> 
+    <span class="function">rgba</span>(<span class="number">0, 0, 0, 0.15</span>);
+}
+
+button<span class="keyword">:focus</span> {
+  <span class="attr">outline</span>: <span class="number">3px</span> <span class="keyword">solid</span> <span class="number">#2563eb</span>;
+  <span class="attr">outline-offset</span>: <span class="number">2px</span>;
+}
+
+button<span class="keyword">:active</span> {
+  <span class="attr">transform</span>: <span class="function">translateY</span>(<span class="number">0</span>);
+}
+
+<span class="comment">&lt;!-- Link com Hover --&gt;</span>
+a {
+  <span class="attr">position</span>: <span class="keyword">relative</span>;
+  <span class="attr">color</span>: <span class="number">#2563eb</span>;
+  <span class="attr">text-decoration</span>: <span class="keyword">none</span>;
+}
+
+a<span class="keyword">:hover</span>::<span class="keyword">after</span> {
+  <span class="attr">content</span>: <span class="string">''</span>;
+  <span class="attr">position</span>: <span class="keyword">absolute</span>;
+  <span class="attr">bottom</span>: <span class="number">-2px</span>;
+  <span class="attr">left</span>: <span class="number">0</span>;
+  <span class="attr">width</span>: <span class="number">100%</span>;
+  <span class="attr">height</span>: <span class="number">2px</span>;
+  <span class="attr">background</span>: <span class="number">#2563eb</span>;
+}
+
+a<span class="keyword">:focus</span> {
+  <span class="attr">outline</span>: <span class="number">3px</span> <span class="keyword">solid</span> <span class="number">#2563eb</span>;
+  <span class="attr">outline-offset</span>: <span class="number">4px</span>;
+}</code></pre>
+      </div>
+      <div class="slide-footer">Hover/Focus</div>
+    </div>
+
+    <!-- 09A: TECNOLOGIA - HTML5 SEMÂNTICO -->
+    <div class="slide">
+      <h2 class="center">Tecnologia — HTML5 Semântico</h2>
+      <div class="card" style="max-height: 480px; overflow-y: auto;">
+        <p><strong>Elementos Semânticos para Acessibilidade:</strong></p>
+        <pre
+          style="
+            background: #f0f4f8;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            overflow-x: auto;
+          "
+        ><code><span class="tag">&lt;!DOCTYPE</span> <span class="attr">html</span><span class="tag">&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="string">"pt-PT"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> <span class="tag">/&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> 
+        <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+
+<span class="tag">&lt;body&gt;</span>
+  <span class="tag">&lt;header&gt;</span>
+    <span class="tag">&lt;nav</span> <span class="attr">role</span>=<span class="string">"navigation"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;ul&gt;</span>
+        <span class="tag">&lt;li&gt;&lt;a</span> <span class="attr">href</span>=<span class="string">"#sobre"</span><span class="tag">&gt;</span>Sobre<span class="tag">&lt;/a&gt;&lt;/li&gt;</span>
+      <span class="tag">&lt;/ul&gt;</span>
+    <span class="tag">&lt;/nav&gt;</span>
+  <span class="tag">&lt;/header&gt;</span>
+
+  <span class="tag">&lt;main&gt;</span>
+    <span class="tag">&lt;section</span> <span class="attr">id</span>=<span class="string">"projetos"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;article&gt;</span>
+        <span class="tag">&lt;h2&gt;</span>Projeto 1<span class="tag">&lt;/h2&gt;</span>
+        <span class="tag">&lt;p&gt;</span>Descrição...<span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;/article&gt;</span>
+    <span class="tag">&lt;/section&gt;</span>
+  <span class="tag">&lt;/main&gt;</span>
+
+  <span class="tag">&lt;footer&gt;</span>
+    <span class="tag">&lt;p&gt;</span>© 2024<span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;/footer&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+
+<span class="comment">&lt;!-- Elementos: header, nav, main, section, article, footer --&gt;</span>
+<span class="comment">&lt;!-- Benefício: Melhor structure, SEO e acessibilidade --&gt;</span></code></pre>
+      </div>
+      <div class="slide-footer">HTML5 Semântico</div>
+    </div>
+
+    <!-- 09B: TECNOLOGIA - CSS3 GRID/FLEXBOX -->
+    <div class="slide">
+      <h2 class="center">Tecnologia — CSS3 Grid/Flexbox</h2>
+      <div class="card" style="max-height: 480px; overflow-y: auto;">
+        <p><strong>Layouts Responsivos Modernos:</strong></p>
+        <pre
+          style="
+            background: #f0f4f8;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            overflow-x: auto;
+          "
+        ><code><span class="comment">/* Flexbox para navegação */</span>
+<span class="attr">header nav ul</span> {
+  <span class="attr">display</span>: <span class="keyword">flex</span>;
+  <span class="attr">flex-direction</span>: <span class="keyword">row</span>;
+  <span class="attr">justify-content</span>: <span class="keyword">space-around</span>;
+  <span class="attr">align-items</span>: <span class="keyword">center</span>;
+  <span class="attr">gap</span>: <span class="number">2rem</span>;
+  <span class="attr">list-style</span>: <span class="keyword">none</span>;
+}
+
+<span class="comment">/* CSS Grid para galeria de projetos */</span>
+.<span class="attr">projects__container</span> {
+  <span class="attr">display</span>: <span class="keyword">grid</span>;
+  <span class="attr">grid-template-columns</span>: <span class="keyword">repeat</span>(<span class="attr">auto-fit</span>, <span class="function">minmax</span>(<span class="number">300px</span>, <span class="number">1fr</span>));
+  <span class="attr">gap</span>: <span class="number">2rem</span>;
+  <span class="attr">padding</span>: <span class="number">2rem</span>;
+}
+
+<span class="comment">/* Flexbox para card interno */</span>
+.<span class="attr">project-card</span> {
+  <span class="attr">display</span>: <span class="keyword">flex</span>;
+  <span class="attr">flex-direction</span>: <span class="keyword">column</span>;
+  <span class="attr">justify-content</span>: <span class="keyword">space-between</span>;
+  <span class="attr">border</span>: <span class="number">1px</span> <span class="keyword">solid</span> <span class="number">#ddd</span>;
+  <span class="attr">border-radius</span>: <span class="number">8px</span>;
+  <span class="attr">padding</span>: <span class="number">1.5rem</span>;
+}
+
+<span class="comment">/* Auto-fit: responsivo sem media queries */</span></code></pre>
+      </div>
+      <div class="slide-footer">CSS3 Grid/Flexbox</div>
+    </div>
+
+    <!-- 09C: TECNOLOGIA - JAVASCRIPT VANILLA -->
+    <div class="slide">
+      <h2 class="center">Tecnologia — JavaScript Vanilla</h2>
+      <div class="card" style="max-height: 480px; overflow-y: auto;">
+        <p><strong>Sem Frameworks — DOM Manipulation Puro:</strong></p>
+        <pre
+          style="
+            background: #f0f4f8;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            overflow-x: auto;
+          "
+        ><code><span class="comment">// QuerySelector + classList</span>
+<span class="keyword">const</span> menu = <span class="function">document</span>.<span class="function">querySelector</span>(<span class="string">'.menu'</span>);
+<span class="keyword">const</span> btn = <span class="function">document</span>.<span class="function">getElementById</span>(<span class="string">'menuBtn'</span>);
+
+<span class="comment">// Event Listeners</span>
+btn.<span class="function">addEventListener</span>(<span class="string">'click'</span>, () => {
+  menu.<span class="attr">classList</span>.<span class="function">toggle</span>(<span class="string">'open'</span>);
+});
+
+<span class="comment">// Scroll listener para back-to-top</span>
+<span class="function">window</span>.<span class="function">addEventListener</span>(<span class="string">'scroll'</span>, () => {
+  <span class="keyword">if</span> (<span class="function">window</span>.<span class="attr">scrollY</span> > <span class="number">300</span>) {
+    backBtn.<span class="attr">classList</span>.<span class="function">add</span>(<span class="string">'visible'</span>);
+  } <span class="keyword">else</span> {
+    backBtn.<span class="attr">classList</span>.<span class="function">remove</span>(<span class="string">'visible'</span>);
+  }
+});
+
+<span class="comment">// Form validation</span>
+form.<span class="function">addEventListener</span>(<span class="string">'submit'</span>, (e) => {
+  <span class="keyword">if</span> (!form.<span class="attr">checkValidity</span>()) {
+    e.<span class="function">preventDefault</span>();
+  }
+});</code></pre>
+      </div>
+      <div class="slide-footer">JavaScript Vanilla</div>
+    </div>
+
+    <!-- 09D: TECNOLOGIA - GOOGLE FONTS & FONTAWESOME -->
+    <div class="slide">
+      <h2 class="center">Tecnologia — Google Fonts & FontAwesome</h2>
+      <div class="card" style="max-height: 480px; overflow-y: auto;">
+        <p><strong>Tipografia e Ícones Profissionais:</strong></p>
+        <pre
+          style="
+            background: #f0f4f8;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            overflow-x: auto;
+          "
+        ><code><span class="comment">&lt;!-- Google Fonts no HEAD --&gt;</span>
+<span class="tag">&lt;link</span> 
+  <span class="attr">href</span>=<span class="string">"https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap"</span>
+  <span class="attr">rel</span>=<span class="string">"stylesheet"</span> 
+<span class="tag">/&gt;</span>
+
+<span class="comment">&lt;!-- FontAwesome no HEAD --&gt;</span>
+<span class="tag">&lt;link</span>
+  <span class="attr">rel</span>=<span class="string">"stylesheet"</span>
+  <span class="attr">href</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"</span>
+<span class="tag">/&gt;</span>
+
+<span class="comment">/* CSS: Aplicar fontes */</span>
+body { <span class="attr">font-family</span>: <span class="string">'Poppins'</span>, <span class="keyword">sans-serif</span>; }
+code { <span class="attr">font-family</span>: <span class="string">'Fira Code'</span>, <span class="keyword">monospace</span>; }
+
+<span class="comment">&lt;!-- HTML: Usar ícones --&gt;</span>
+<span class="tag">&lt;button&gt;</span>
+  <span class="tag">&lt;i</span> <span class="attr">class</span>=<span class="string">"fa-solid fa-bars"</span><span class="tag">&gt;&lt;/i&gt;</span> Menu
+<span class="tag">&lt;/button&gt;</span>
+
+<span class="tag">&lt;i</span> <span class="attr">class</span>=<span class="string">"fa-brands fa-github"</span><span class="tag">&gt;&lt;/i&gt;</span></code></pre>
+      </div>
+      <div class="slide-footer">Google Fonts & FontAwesome</div>
+    </div>
+
+    <!-- 09E: METODOLOGIA - MOBILE-FIRST -->
+    <div class="slide">
+      <h2 class="center">Metodologia — Mobile-First</h2>
+      <div class="card" style="max-height: 480px; overflow-y: auto;">
+        <p><strong>Começar pelo Mobile, Enriquecer no Desktop:</strong></p>
+        <pre
+          style="
+            background: #f0f4f8;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            overflow-x: auto;
+          "
+        ><code><span class="comment">/* 1. Base: Mobile (sem media queries) */</span>
+.<span class="attr">container</span> {
+  <span class="attr">padding</span>: <span class="number">1rem</span>;
+  <span class="attr">font-size</span>: <span class="number">16px</span>;
+}
+
+.<span class="attr">projects</span> {
+  <span class="attr">display</span>: <span class="keyword">flex</span>;
+  <span class="attr">flex-direction</span>: <span class="keyword">column</span>;
+  <span class="attr">gap</span>: <span class="number">1rem</span>;
+}
+
+<span class="comment">/* 2. Tablet+ (media query) */</span>
+<span class="keyword">@media</span> (<span class="attr">min-width</span>: <span class="number">768px</span>) {
+  .<span class="attr">projects</span> {
+    <span class="attr">display</span>: <span class="keyword">grid</span>;
+    <span class="attr">grid-template-columns</span>: <span class="keyword">repeat</span>(<span class="number">2</span>, <span class="number">1fr</span>);
+    <span class="attr">gap</span>: <span class="number">2rem</span>;
+  }
+}
+
+<span class="comment">/* 3. Desktop+ */</span>
+<span class="keyword">@media</span> (<span class="attr">min-width</span>: <span class="number">1024px</span>) {
+  .<span class="attr">projects</span> {
+    <span class="attr">grid-template-columns</span>: <span class="keyword">repeat</span>(<span class="number">3</span>, <span class="number">1fr</span>);
+  }
+}</code></pre>
+      </div>
+      <div class="slide-footer">Mobile-First</div>
+    </div>
+
+    <!-- 09F: METODOLOGIA - BEM/COMPONENT-BASED CSS -->
+    <div class="slide">
+      <h2 class="center">Metodologia — BEM/Component-Based CSS</h2>
+      <div class="card" style="max-height: 480px; overflow-y: auto;">
+        <p><strong>Block__Element--Modifier para Organização:</strong></p>
+        <pre
+          style="
+            background: #f0f4f8;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            overflow-x: auto;
+          "
+        ><code><span class="comment">&lt;!-- HTML Structure --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"project-card"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="string">""</span> <span class="attr">alt</span>=<span class="string">""</span> 
+       <span class="attr">class</span>=<span class="string">"project-card__image"</span> <span class="tag">/&gt;</span>
+  <span class="tag">&lt;h3</span> <span class="attr">class</span>=<span class="string">"project-card__title"</span><span class="tag">&gt;</span>
+    Meu Projeto
+  <span class="tag">&lt;/h3&gt;</span>
+  <span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="string">"project-card__button project-card__button--primary"</span><span class="tag">&gt;</span>
+    Ver Mais
+  <span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="comment">/* CSS: BEM Naming */</span>
+<span class="keyword">.</span><span class="attr">project-card</span> { <span class="comment">/* Block */</span> }
+<span class="keyword">.</span><span class="attr">project-card__title</span> { <span class="comment">/* Element */</span> }
+<span class="keyword">.</span><span class="attr">project-card__button--primary</span> { <span class="comment">/* Modifier */</span> }</code></pre>
+      </div>
+      <div class="slide-footer">BEM/Component-Based</div>
+    </div>
+
+    <!-- 09G: METODOLOGIA - PROGRESSIVE ENHANCEMENT -->
+    <div class="slide">
+      <h2 class="center">Metodologia — Progressive Enhancement</h2>
+      <div class="card" style="max-height: 480px; overflow-y: auto;">
+        <p><strong>Funcionalidade Base sem JS, Melhorada com Interatividade:</strong></p>
+        <pre
+          style="
+            background: #f0f4f8;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            overflow-x: auto;
+          "
+        ><code><span class="comment">&lt;!-- 1. HTML Base (sem JS) --&gt;</span>
+<span class="tag">&lt;form</span> <span class="attr">method</span>=<span class="string">"POST"</span> <span class="attr">action</span>=<span class="string">"/submit"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">required</span> <span class="tag">/&gt;</span>
+  <span class="tag">&lt;button</span> <span class="attr">type</span>=<span class="string">"submit"</span><span class="tag">&gt;</span>Enviar<span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;/form&gt;</span>
+
+<span class="comment">/* 2. CSS sem JS */</span>
+<span class="attr">input</span><span class="keyword">:invalid</span> { <span class="attr">border-color</span>: <span class="keyword">red</span>; }
+
+<span class="comment">// 3. JS (opcional) - melhora UX</span>
+form.<span class="function">addEventListener</span>(<span class="string">'submit'</span>, (e) => {
+  e.<span class="function">preventDefault</span>();
+  <span class="function">showMessage</span>(<span class="string">'Enviado!'</span>);
+  <span class="comment">// Custom handling</span>
+});</code></pre>
+      </div>
+      <div class="slide-footer">Progressive Enhancement</div>
+    </div>
+
+    <!-- 09H: METODOLOGIA - ACCESSIBLE-FIRST (A11Y) -->
+    <div class="slide">
+      <h2 class="center">Metodologia — Accessible-First (A11y)</h2>
+      <div class="card" style="max-height: 480px; overflow-y: auto;">
+        <p><strong>Acessibilidade desde o Início:</strong></p>
+        <pre
+          style="
+            background: #f0f4f8;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            overflow-x: auto;
+          "
+        ><code><span class="comment">&lt;!-- Semantic HTML --&gt;</span>
+<span class="tag">&lt;button</span> <span class="attr">aria-label</span>=<span class="string">"Abrir menu"</span> 
+        <span class="attr">aria-expanded</span>=<span class="string">"false"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;i</span> <span class="attr">class</span>=<span class="string">"fa-solid fa-bars"</span><span class="tag">&gt;&lt;/i&gt;</span>
+<span class="tag">&lt;/button&gt;</span>
+
+<span class="comment">&lt;!-- High Contrast --&gt;</span>
+:root {
+  <span class="attr">--text</span>: <span class="number">#0f172a</span>;  <span class="comment">/* 9:1 contrast */</span>
+  <span class="attr">--background</span>: <span class="number">#ffffff</span>;
+}
+
+<span class="comment">&lt;!-- Focus Indicators --&gt;</span>
+<span class="attr">button</span><span class="keyword">:focus</span> {
+  <span class="attr">outline</span>: <span class="number">3px</span> <span class="keyword">solid</span> <span class="attr">--primary</span>;
+  <span class="attr">outline-offset</span>: <span class="number">2px</span>;
+}
+
+<span class="comment">&lt;!-- Touch Targets --&gt;</span>
+<span class="attr">button</span> {
+  <span class="attr">min-height</span>: <span class="number">44px</span>;
+  <span class="attr">min-width</span>: <span class="number">44px</span>;
+}</code></pre>
+      </div>
+      <div class="slide-footer">Accessible-First</div>
+    </div>
+
+    <!-- 09I: METODOLOGIA - GIT WORKFLOW -->
+    <div class="slide">
+      <h2 class="center">Metodologia — Git Workflow</h2>
+      <div class="card" style="max-height: 480px; overflow-y: auto;">
+        <p><strong>Versionamento e Colaboração:</strong></p>
+        <pre
+          style="
+            background: #f0f4f8;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            overflow-x: auto;
+          "
+        ><code><span class="comment"># Inicializar repositório</span>
+$ git init
+$ git add .
+$ git commit -m <span class="string">"Initial commit: portfolio structure"</span>
+
+<span class="comment"># Feature branches</span>
+$ git checkout -b feature/responsive-menu
+<span class="comment"># ... desenvolvimento ...</span>
+$ git add css/menu.css js/menu.js
+$ git commit -m <span class="string">"feat: implement hamburger menu with ARIA"</span>
+
+<span class="comment"># Merge para main</span>
+$ git checkout main
+$ git merge feature/responsive-menu
+$ git push origin main
+
+<span class="comment"># Commits semânticos (Conventional Commits)</span>
+<span class="string">"feat: nova funcionalidade"</span>
+<span class="string">"fix: correção de bug"</span>
+<span class="string">"docs: atualizar README"</span>
+<span class="string">"style: formatar código"</span></code></pre>
+      </div>
+      <div class="slide-footer">Git Workflow</div>
+    </div>
+
+    <!-- 10: PRINCIPAL DESAFIO TÉCNICO -->
+    <div class="slide">
+      <h2 class="center">Principal Desafio Técnico</h2>
+      <div class="card">
+        <p>
+          Alcançar um nível elevado de acessibilidade (WCAG AA/AAA) mantendo um
+          design moderno e responsivo — em particular:
+        </p>
+        <ul>
+          <li>Contraste de cores suficiente para texto e componentes.</li>
+          <li>Ordem lógica de foco e navegação por teclado.</li>
+          <li>Touch targets e usabilidade em ecrãs pequenos.</li>
+        </ul>
+      </div>
+      <div class="slide-footer">Desafio</div>
+    </div>
+
+    <!-- 11: SOLUÇÃO IMPLEMENTADA -->
+    <div class="slide">
+      <h2 class="center">Solução Implementada</h2>
+      <div class="card">
+        <p>Foram aplicadas várias medidas práticas:</p>
+        <ul>
+          <li>
+            <strong>Paleta de alto contraste:</strong> revisão de cores para
+            obter ≥7:1 em textos principais.
+          </li>
+          <li>
+            <strong>ARIA e landmarks:</strong> uso de `nav`, `main`, `header`,
+            `footer` e `aria-labels` para leitores de tela.
+          </li>
+          <li>
+            <strong>Gerência de foco:</strong> scripts para retorno do foco ao
+            fechar menus e outlines visíveis com `:focus`.
+          </li>
+          <li>
+            <strong>Touch targets:</strong> botões e links com
+            `min-height`/`min-width` apropriados e espaçamento touch-friendly.
+          </li>
+          <li>
+            <strong>Progressive enhancement:</strong> funcionalidade básica sem
+            JS, melhorada com scripts para animações e UX.
+          </li>
+        </ul>
+        <p>
+          Resultado: interface acessível, testada em teclado, leitores de ecrã e
+          múltiplos ecrãs.
+        </p>
+      </div>
+      <div class="slide-footer">Solução</div>
+    </div>
+
+    <!-- 11A: ACESSIBILIDADE - EXEMPLOS VISUAIS -->
+    <div class="slide">
+      <h2 class="center">Acessibilidade — Exemplos Visuais</h2>
+      <div class="card">
+        <p>Capturas e exemplos de verificações de acessibilidade:</p>
+        <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;">
+          <figure style="flex:1 1 200px;max-width:320px;text-align:center;">
+            <img src="assets/acessibilidade/01.png" alt="Relatório de contraste - exemplo" style="width:100%;height:auto;border-radius:6px;display:block;" loading="lazy">
+            <figcaption style="font-size:0.85rem;margin-top:0.4rem;">01 - Verificação de Contraste</figcaption>
+          </figure>
+
+          <figure style="flex:1 1 200px;max-width:320px;text-align:center;">
+            <img src="assets/acessibilidade/02.png" alt="Teste de navegação por teclado" style="width:100%;height:auto;border-radius:6px;display:block;" loading="lazy">
+            <figcaption style="font-size:0.85rem;margin-top:0.4rem;">02 - Navegação por Teclado</figcaption>
+          </figure>
+
+          <figure style="flex:1 1 200px;max-width:320px;text-align:center;">
+            <img src="assets/acessibilidade/03.png" alt="Relatório de leitores de ecrã" style="width:100%;height:auto;border-radius:6px;display:block;" loading="lazy">
+            <figcaption style="font-size:0.85rem;margin-top:0.4rem;">03 - Leitores de Ecrã</figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="slide-footer">Acessibilidade</div>
+    </div>
+
+    <!-- 12: CONCLUSÃO - FUNCIONALIDADES FUTURAS -->
+    <div class="slide">
+      <h2 class="center">Funcionalidades a Implementar Futuramente</h2>
+      <div class="card">
+        <ul>
+          <li>
+            <strong>Deploy automático:</strong> publicação contínua com GitHub
+            Pages, Netlify ou Vercel.
+          </li>
+          <li>
+            <strong>Formulário com backend:</strong> integração serverless para
+            envio de mensagens reais.
+          </li>
+          <li>
+            <strong>Galeria dinâmica de projetos:</strong> carregar projetos via
+            JSON e filtros por tecnologia.
+          </li>
+          <li>
+            <strong>Testes automatizados de A11y:</strong> integração com
+            axe-core e Lighthouse no CI.
+          </li>
+        </ul>
+      </div>
+      <div class="slide-footer">Futuro</div>
+    </div>
+
+    <!-- 13: CONCLUSÃO - CONSIDERAÇÕES FINAIS -->
+    <div class="slide">
+      <h2 class="center">Considerações Finais</h2>
+      <div class="card">
+        <p>
+          Este portfólio demonstra competências em frontend, responsividade e
+          acessibilidade. As melhorias previstas focam em publicação contínua,
+          automatização de testes e enriquecimento do conteúdo.
+        </p>
+        <p>Agradeço a atenção — disponível para feedback e iterações.</p>
+      </div>
+      <div class="slide-footer">Conclusão</div>
+    </div>
+
+    <script>
+      let currentSlide = 0;
+      const slides = document.querySelectorAll(".slide");
+      const progressBar = document.getElementById("progressBar");
+
+      function toggleView() {
+        document.body.classList.toggle("list-mode");
+        const btn = document.querySelector(".view-toggle");
+        if (document.body.classList.contains("list-mode")) {
+          btn.innerHTML =
+            '<i class="fa-solid fa-play"></i> Alternar Vista (Apresentação)';
+        } else {
+          btn.innerHTML =
+            '<i class="fa-solid fa-list"></i> Alternar Vista (Scroll)';
+        }
+      }
+
+      function updateSlide() {
+        if (document.body.classList.contains("list-mode")) return;
+
+        slides.forEach((slide, index) => {
+          slide.classList.remove("active");
+          if (index === currentSlide) slide.classList.add("active");
+        });
+
+        const progress = ((currentSlide + 1) / slides.length) * 100;
+        progressBar.style.width = `${progress}%`;
+      }
+
+      function nextSlide() {
+        if (currentSlide < slides.length - 1) {
+          currentSlide++;
+          updateSlide();
+        }
+      }
+
+      function prevSlide() {
+        if (currentSlide > 0) {
+          currentSlide--;
+          updateSlide();
+        }
+      }
+
+      document.addEventListener("keydown", (e) => {
+        if (document.body.classList.contains("list-mode")) return;
+        if (e.key === "ArrowRight" || e.key === " ") nextSlide();
+        if (e.key === "ArrowLeft") prevSlide();
+      });
+
+      window.onload = function () {
+        window.focus();
+        updateSlide();
+      };
+
+      /* Demo menu: abrir/fechar, overlay, fechar ao clicar no link e retorno de foco */
+      (function () {
+        const btn = document.getElementById("demoMenuBtn");
+        const sidebar = document.getElementById("demoSidebar");
+        const overlay = document.getElementById("demoOverlay");
+        if (!btn || !sidebar || !overlay) return;
+
+        function openMenu() {
+          sidebar.classList.add("open");
+          overlay.hidden = false;
+          overlay.setAttribute("aria-hidden", "false");
+          btn.setAttribute("aria-expanded", "true");
+          sidebar.setAttribute("aria-hidden", "false");
+          const firstLink = sidebar.querySelector("a");
+          if (firstLink) firstLink.focus();
+        }
+
+        function closeMenu() {
+          sidebar.classList.remove("open");
+          overlay.hidden = true;
+          overlay.setAttribute("aria-hidden", "true");
+          btn.setAttribute("aria-expanded", "false");
+          sidebar.setAttribute("aria-hidden", "true");
+          btn.focus();
+        }
+
+        btn.addEventListener("click", () => {
+          const expanded = btn.getAttribute("aria-expanded") === "true";
+          if (expanded) closeMenu();
+          else openMenu();
+        });
+
+        overlay.addEventListener("click", closeMenu);
+        sidebar
+          .querySelectorAll(".demo-link")
+          .forEach((link) => link.addEventListener("click", closeMenu));
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") closeMenu();
+        });
+      })();
+    </script>
+    
+    <script>
+      // Padroniza (ou cria) os rodapés das slides para coincidir com o título (h2.center)
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.slide').forEach(slide => {
+          const h2 = slide.querySelector('h2.center');
+          if (!h2) return;
+          let footer = slide.querySelector('.slide-footer');
+          if (!footer) {
+            footer = document.createElement('div');
+            footer.className = 'slide-footer';
+            slide.appendChild(footer);
+          }
+          footer.textContent = h2.textContent.trim();
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -7,6 +7,9 @@
 **Repositório GitHub:**
 - https://github.com/dsanches06/portfolio  
 
+**Link da página publicada no repositorio Github**
+- https://dsanches06.github.io/Portfolio/
+
 **Como executar localmente**
 - Abrir `index.html` diretamente no navegador.
 
